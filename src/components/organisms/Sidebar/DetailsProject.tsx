@@ -20,19 +20,9 @@ function DetailsProject({ classes, accountLinks }: DetailsProject_TP) {
   const { user } = useAuth();
   const { id } = useParams();
   const [collapsed, setCollapsed] = useState(true);
-  const { data: projects } = useFetch<any>({
-    queryKey: ["manager/projects"],
-    endpoint: "manager/projects",
-  });
-  const { data: detailsProject, isLoading } = useFetch<any>({
-    queryKey: [`manager/projects/${id}`],
-    endpoint: `manager/projects/${id}`,
-    enabled: !!id,
-  });
 
-  return isLoading ? (
-    <Loading />
-  ) : (
+
+  return(
     <div>
       <div className="relative">
         <div className="absolute z-20 left-0 right-0 bg-[#fbfbfb] pb-3 cursor-pointer">
@@ -47,11 +37,9 @@ function DetailsProject({ classes, accountLinks }: DetailsProject_TP) {
                 radius="sm"
                 className="bg-main w-[40px] h-[40px]"
               >
-                {getInitials(user?.company?.company_title)}
+                AC
               </Avatar>
-              {detailsProject?.result?.data?.title
-                ? detailsProject?.result?.data?.title
-                : user?.company?.company_title}
+              Toure
             </div>
             {!collapsed ? (
               <FaAngleUp className="text-dark" />
@@ -60,12 +48,59 @@ function DetailsProject({ classes, accountLinks }: DetailsProject_TP) {
             )}
           </Title>
         </div>
+        <div
+          className="bg-[#fbfbfb] h-[70vh]  absolute left-0 w-full  z-10 transition-all  border-t"
+          style={{
+            transform: collapsed ? "translateY(-100%) " : "translateY(15%)",
+          }}
+        >
+          <div>
+            <div className="p-3 mt-3  ">
+              <BaseInputSearch
+                name=""
+                placeholder="Search for project"
+                label=""
+              />
+            </div>
+            <div className="h-[220px]  overflow-scroll">
+              Project-1
+            </div>
+
+            <div className=" p-3 mt-3 border-t py-3 ">
+              <Link
+                to={"/corporate-account/overview"}
+                className="flex items-center gap-2"
+              >
+                <IoBagOutline
+                  style={{ width: "23px", height: "23px", color: "#5f616a " }}
+                />
+                <p>Corporate account</p>
+              </Link>
+              <Link
+                to={"/projects/all"}
+                className="flex items-center gap-2 mt-7"
+              >
+                <AiOutlineAppstore
+                  style={{ width: "23px", height: "23px", color: "#5f616a " }}
+                />
+                <p>All projects</p>
+              </Link>
+              <Link
+                to={"/projects/all/add"}
+                className="flex items-center gap-2 mt-7"
+              >
+                <IoAddCircleOutline
+                  style={{ width: "23px", height: "23px", color: "#5f616a " }}
+                />
+                <p>Create new project</p>
+              </Link>
+            </div>
+          </div>
+        </div>
       
       </div>
 
-      <Box mih={220} p="md" mt={50}>
-        {accountLinks}
-      </Box>
+     
     </div>
   );
 }

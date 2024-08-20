@@ -49,7 +49,7 @@ export const Root = () => {
             />
           </nav>
           <div
-            className=" bg-white relative "
+            className=" bg-white relative overflow-scroll "
             style={{ height: "calc(100vh - 64px)" }}
           >
             <div className="  p-6 ">

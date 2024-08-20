@@ -2,53 +2,55 @@ import { FieldArray, useFormikContext } from "formik";
 import { t } from "i18next";
 import BaseInputRepeater from "../../../../molecules/formik-fields/BaseInputRepeater";
 import { SvgDelete } from "../../../../atoms/icons/SvgDelete";
+import DateInputMantine from "../../../../molecules/formik-fields/DateInputMantine";
 
-function TourItineraries() {
+function FrequentlyQuestions() {
   const { values, setFieldValue, errors } = useFormikContext<any>();
 
   return (
     <div>
       {" "}
       <h1 className="text-start text-teal-600 font-semibold mb-8 text-[20px]">
-        {t("Tour Itineraries")}
+        {t("Tour Availabilities")}
       </h1>
-      <FieldArray name="tour_itineraries">
+      <FieldArray name="frequently_questions">
         {({ push, remove }) => (
           <div className=" col-span-full  relative">
-            {values?.tour_itineraries?.map((item: any, index: any) => (
+            {values?.frequently_questions?.map((item: any, index: any) => (
               <>
-                <p className="font-bold">Day - {index + 1}</p>
+                <p className="font-bold"> {index + 1}</p>
                 <div className="grid grid-cols-2 relative gap-2 border border-dashed p-2 rounded-xl my-2  ">
+                  
                   <BaseInputRepeater
                     id=""
-                    label={`${t("title")}`}
-                    name={`tour_itineraries[${index}][title]`}
-                    placeholder={`${t("title")}`}
+                    label={`${t("question")}`}
+                    name={`frequently_questions[${index}][question]`}
+                    placeholder={`${t("question")}`}
                     type="text"
-                    value={item?.title}
+                    value={item?.question}
                     onChange={(e) =>
                       setFieldValue(
-                        `tour_itineraries[${index}][title]`,
+                        `frequently_questions[${index}][question]`,
                         e.target.value
                       )
                     }
                   />
                   <BaseInputRepeater
                     id=""
-                    label={`${t("description")}`}
-                    name={`tour_itineraries[${index}][description]`}
-                    placeholder={`${t("description")}`}
+                    label={`${t("answer")}`}
+                    name={`frequently_questions[${index}][answer]`}
+                    placeholder={`${t("answer")}`}
                     type="text"
-                    value={item?.description}
+                    value={item?.answer}
                     onChange={(e) =>
                       setFieldValue(
-                        `tour_itineraries[${index}][description]`,
+                        `frequently_questions[${index}][answer]`,
                         e.target.value
                       )
                     }
                   />
 
-                  {values?.tour_itineraries?.length > 1 && (
+                  {values?.frequently_questions?.length > 1 && (
                     <button
                       type="button"
                       className=" absolute ltr:right-[-25px]  top-[10px]"
@@ -81,4 +83,4 @@ function TourItineraries() {
   );
 }
 
-export default TourItineraries;
+export default FrequentlyQuestions;

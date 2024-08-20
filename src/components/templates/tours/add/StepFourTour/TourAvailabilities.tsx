@@ -2,53 +2,58 @@ import { FieldArray, useFormikContext } from "formik";
 import { t } from "i18next";
 import BaseInputRepeater from "../../../../molecules/formik-fields/BaseInputRepeater";
 import { SvgDelete } from "../../../../atoms/icons/SvgDelete";
+import DateInputMantine from "../../../../molecules/formik-fields/DateInputMantine";
 
-function TourItineraries() {
+function TourAvailabilities() {
   const { values, setFieldValue, errors } = useFormikContext<any>();
 
   return (
     <div>
       {" "}
       <h1 className="text-start text-teal-600 font-semibold mb-8 text-[20px]">
-        {t("Tour Itineraries")}
+        {t("Tour Availabilities")}
       </h1>
-      <FieldArray name="tour_itineraries">
+      <FieldArray name="tour_availabilities">
         {({ push, remove }) => (
           <div className=" col-span-full  relative">
-            {values?.tour_itineraries?.map((item: any, index: any) => (
+            {values?.tour_availabilities?.map((item: any, index: any) => (
               <>
-                <p className="font-bold">Day - {index + 1}</p>
+                <p className="font-bold"> {index + 1}</p>
                 <div className="grid grid-cols-2 relative gap-2 border border-dashed p-2 rounded-xl my-2  ">
+                  <DateInputMantine
+                    label="date"
+                    name={`tour_availabilities[${index}][date]`}
+                  />
                   <BaseInputRepeater
                     id=""
-                    label={`${t("title")}`}
-                    name={`tour_itineraries[${index}][title]`}
-                    placeholder={`${t("title")}`}
+                    label={`${t("price")}`}
+                    name={`tour_availabilities[${index}][price]`}
+                    placeholder={`${t("price")}`}
                     type="text"
-                    value={item?.title}
+                    value={item?.price}
                     onChange={(e) =>
                       setFieldValue(
-                        `tour_itineraries[${index}][title]`,
+                        `tour_availabilities[${index}][price]`,
                         e.target.value
                       )
                     }
                   />
                   <BaseInputRepeater
                     id=""
-                    label={`${t("description")}`}
-                    name={`tour_itineraries[${index}][description]`}
-                    placeholder={`${t("description")}`}
+                    label={`${t("discount")}`}
+                    name={`tour_availabilities[${index}][discount]`}
+                    placeholder={`${t("discount")}`}
                     type="text"
-                    value={item?.description}
+                    value={item?.discount}
                     onChange={(e) =>
                       setFieldValue(
-                        `tour_itineraries[${index}][description]`,
+                        `tour_availabilities[${index}][discount]`,
                         e.target.value
                       )
                     }
                   />
 
-                  {values?.tour_itineraries?.length > 1 && (
+                  {values?.tour_availabilities?.length > 1 && (
                     <button
                       type="button"
                       className=" absolute ltr:right-[-25px]  top-[10px]"
@@ -81,4 +86,4 @@ function TourItineraries() {
   );
 }
 
-export default TourItineraries;
+export default TourAvailabilities;

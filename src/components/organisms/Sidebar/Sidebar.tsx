@@ -70,6 +70,7 @@ export function SideBar2({
         <div
           className={` relative flex flex-col  justify-between ${classes.main}`}
         >
+          {/* <DetailsProject accountLinks={[]} classes={classes} /> */}
           <div>
             <Title
               order={5}
