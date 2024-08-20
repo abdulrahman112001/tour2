@@ -42,13 +42,11 @@ function StepTowTour() {
           name="from_city_id"
           label="From city"
           placeholder="From city"
-          
         />
         <SelectCities
           name="to_city_id"
           label="Ti city"
           placeholder="From city"
-          
         />
         <div className="col-span-3">
           <TextAreaField
@@ -59,6 +57,15 @@ function StepTowTour() {
             rows={5}
           />
         </div>
+        {/* <div className="col-span-3">
+          <CKeditor
+            label="Description"
+            name="description"
+            placeholder="Description"
+
+
+          />
+        </div> */}
         <div className="col-span-2 ">
           <TourItineraries />
         </div>
