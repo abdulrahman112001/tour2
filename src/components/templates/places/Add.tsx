@@ -23,6 +23,12 @@ function Add({ refetch, update }: AddCurrency_TP) {
     city_id: update?.city_id || "",
     latitude: update?.latitude || "",
     longitude: update?.longitude || "",
+    images:
+    update?.images?.map((item) => ({
+      path: item.url,
+      type: "image",
+    })) || [],
+  panar_image: [{ path: update?.panar_image, type: "image" }] || [],
 
   };
   const { mutate, isLoading } = useMutate({
@@ -66,7 +72,10 @@ function Add({ refetch, update }: AddCurrency_TP) {
       <Formik
         initialValues={initialValues}
         // validationSchema={validationSchema}
-        onSubmit={(values: any) => handleSubmit(values)}
+        onSubmit={(values: any) => {
+          const panar_image = values?.panar_image[0];
+          handleSubmit({ ...values, panar_image: panar_image });
+        }}
       >
         <Form>
           <HandleBackErrors>

@@ -3,6 +3,8 @@ import { BaseInputField, InnerFormLayout } from "../../molecules";
 import ActivationStatus from "../../molecules/ActivationStatus";
 import SelectCountry from "../../molecules/Select/SelectCountry";
 import SelectCities from "../../molecules/Select/SelectCities";
+import { Label } from "../../atoms";
+import { DropFile } from "../../molecules/files/DropFile";
 
 function MainData(update: any) {
   return (
@@ -58,6 +60,14 @@ function MainData(update: any) {
               className="mb-3"
               required
             />
+          </div>
+          <div className="col-span-12 md:col-span-3">
+            <Label>images</Label>
+            <DropFile name="images" />
+          </div>
+          <div className="col-span-12 md:col-span-3">
+            <Label>banner  image</Label>
+            <DropFile name="panar_image" />
           </div>
         </div>
       </InnerFormLayout>
