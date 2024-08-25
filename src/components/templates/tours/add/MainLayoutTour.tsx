@@ -104,7 +104,7 @@ function MainLayoutTour({ editIdTour }: MainLayoutTour_TP) {
                         to_city_id: values?.to_city_id,
                         age_range: values?.age_range,
                         run: values?.run,
-                        city_id: "1",
+                        // city_id: "1",
 
                         step: 2,
                         _method: "PUT",
@@ -147,14 +147,14 @@ function MainLayoutTour({ editIdTour }: MainLayoutTour_TP) {
                         to_city_id: values?.to_city_id,
                         age_range: values?.age_range,
                         run: values?.run,
-                        city_id: "1",
+                        // city_id: "1",
                         step: 2,
                       })
                     : active == 2
                     ? addTour({
-                        images: [values?.images],
+                        images: values?.images,
                         pdf_file: values?.pdf_file,
-                        main_image: values?.main_image,
+                        main_image: values?.main_image[0],
                         tour_id: values?.tour_id,
                         step: 3,
                       })

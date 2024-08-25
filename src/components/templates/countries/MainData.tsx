@@ -1,6 +1,8 @@
 import { t } from "i18next";
 import { BaseInputField, InnerFormLayout } from "../../molecules";
 import ActivationStatus from "../../molecules/ActivationStatus";
+import { DropFile } from "../../molecules/files/DropFile";
+import { Label } from "../../atoms";
 
 function MainData(update: any) {
   return (
@@ -87,6 +89,14 @@ function MainData(update: any) {
               className="mb-3"
               required
             />
+          </div>
+          <div className="col-span-12 md:col-span-1">
+            <Label>images</Label>
+            <DropFile name="images" />
+          </div>
+          <div className="col-span-12 md:col-span-1">
+            <Label>banner  image</Label>
+            <DropFile name="panar_image" />
           </div>
         </div>
       </InnerFormLayout>

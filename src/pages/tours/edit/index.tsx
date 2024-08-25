@@ -32,8 +32,8 @@ function EditTour() {
     from_city_id: DetailsTour?.data?.from_city?.id || "",
     to_city_id: DetailsTour?.data?.to_city?.id || "",
     tour_id: DetailsTour?.data?.id || "",
-    age_range: DetailsTour?.age_range || "",
-    run: DetailsTour?.run || "",
+    age_range: DetailsTour?.data?.age_range || "",
+    run: DetailsTour?.data?.run || "",
 
 
 

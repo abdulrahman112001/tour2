@@ -21,6 +21,7 @@ export default function SelectPlaces({
   labelProps = {},
   with_places,
   required,
+  value
 }: SelectPlaces_tp) {
   const { data, isLoading, failureReason } = useFetch<any>({
     queryKey: ["places"],
@@ -38,7 +39,7 @@ export default function SelectPlaces({
     label: item.name,
   }));
   const selectedCountry = dataOptions?.find(
-    (option: OptionType) => option?.value == values[name]
+    (option: OptionType) => option?.value ==(value || values[name])
   );
   return (
     <div className="mt-2">

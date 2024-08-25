@@ -28,12 +28,15 @@ function TourItineraries() {
                         label="Cities"
                         placeholder="Chose cities"
                         with_places={true}
+                        value={item?.city?.id}
                       />
                       <SelectPlaces
                         name={`tour_itineraries[${index}][place_id]`}
                         label="Places"
                         placeholder="Chose places"
                         with_places={true}
+                        value={item?.place?.id}
+
                       />
                       <BaseInputRepeater
                         id=""

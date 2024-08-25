@@ -25,7 +25,6 @@ export const DropFile = ({
   name_id,
   idValue,
 }: DropFileProps_TP) => {
-  console.log("🚀 ~ value:", value);
   const { setFieldValue, values, errors } = useFormikContext<{
     [key: string]: any;
   }>();
@@ -47,7 +46,7 @@ export const DropFile = ({
       ? [valueDynamic]
       : value && !isValueString
       ? [value]
-      : [values[name]];
+      : values[name];
     const images = imageFiles?.filter((file) => pdfOrImage(file) === "image");
     setImages(images);
 
@@ -56,7 +55,7 @@ export const DropFile = ({
         ? [valueDynamic]
         : value && !isValueString
         ? [value]
-        : [values[name]];
+        : values[name];
     const pdfs = pdfFiles?.filter((file) => pdfOrImage(file) === "pdf");
 
     if (Array.isArray(pdfs) && pdfs.length === 1 && Array.isArray(pdfs[0]) && pdfs[0].length === 0) {
@@ -79,7 +78,7 @@ export const DropFile = ({
       setImages([...images, ...files]);
       setFieldValue(name_id, idValue);
     } else {
-      setFieldValue(name, files[0]);
+      setFieldValue(name, files);
       setFieldValue(name_id, idValue);
       setImages(files);
     }
@@ -98,7 +97,7 @@ export const DropFile = ({
       setFieldValue(name, null);
     }
 
-    // تحديث pdfs
+
     const updatedPdfs = pdfs?.filter((file) => file?.id !== id);
     if (Array.isArray(updatedPdfs) && updatedPdfs.length === 1 && Array.isArray(updatedPdfs[0]) && updatedPdfs[0].length === 0) {
       setPdfs([]);

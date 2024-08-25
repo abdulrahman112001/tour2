@@ -20,7 +20,7 @@ function CardTour({ item, refetch }: CardTour_TP) {
       <div className="flex gap-5 p-5 ">
         <div>
           <img
-            src="/tour.jpg"
+            src={item?.main_image}
             alt=""
             style={{
               width: "160px",

@@ -21,7 +21,9 @@ export default function SelectCities({
   labelProps = {},
   required,
   with_places,
+  value
 }: SelectCities_tp) {
+  console.log("🚀 ~ value:", value)
   const queryParams = {
     // page: page,
     with_places: with_places ? true : false,
@@ -41,7 +43,7 @@ export default function SelectCities({
     places: item.places,
   }));
   const selectedCountry = dataOptions?.find(
-    (option: OptionType) => option?.value == values[name]
+    (option: OptionType) => option?.value == (value || values[name])
   );
   return (
     <div className="mt-2">

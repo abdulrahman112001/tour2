@@ -7,6 +7,7 @@ import {
 import ActivationStatus from "../../molecules/ActivationStatus";
 import UploadImg from "../../molecules/UploadImg";
 import { DropFile } from "../../molecules/files/DropFile";
+import CKeditor from "../../molecules/Editor/CKeditor";
 
 function MainData(update: any) {
   return (
@@ -34,17 +35,11 @@ function MainData(update: any) {
               required
             />
           </div>
-          <div>
-            <TextAreaField
-              id=""
-              label="content"
-              name="content_ar"
-              placeholder="content"
-            />
+          <div className="col-span-2">
+            <CKeditor label="content" name="content_ar" placeholder="content" />
           </div>
           <div className="col-span-2">
-          <DropFile name="image" />
-
+            <DropFile name="image" />
           </div>
         </div>
       </InnerFormLayout>
