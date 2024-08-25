@@ -2,6 +2,8 @@ import { FieldArray, useFormikContext } from "formik";
 import { t } from "i18next";
 import { SvgDelete } from "../../../../atoms/icons/SvgDelete";
 import BaseInputRepeater from "../../../../molecules/formik-fields/BaseInputRepeater";
+import ActivationStatus from "../../../../molecules/ActivationStatus";
+import SelectTypeTour from "../../../../molecules/Select/SelectTypeTour";
 
 function TourIncludes() {
   const { values, setFieldValue, errors } = useFormikContext<any>();
@@ -47,7 +49,13 @@ function TourIncludes() {
                       )
                     }
                   />
-               
+                  {/* <ActivationStatus name={`tour_includes[${index}][status]`} /> */}
+                  <SelectTypeTour
+                  name={`tour_includes[${index}][status]`}
+                  label="Type"
+                  
+                  />
+
                   {values?.tour_includes?.length > 1 && (
                     <button
                       type="button"

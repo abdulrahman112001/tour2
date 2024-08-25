@@ -23,7 +23,6 @@ function AddTour() {
         description: "",
         type: "",
         price: "",
-
       },
     ],
     frequently_questions: [
@@ -37,7 +36,6 @@ function AddTour() {
         title: "",
         description: "",
         status: "yes",
-
       },
     ],
     images: [],
@@ -48,8 +46,7 @@ function AddTour() {
     <div className="">
       <Formik initialValues={initialValues} onSubmit={() => {}}>
         <Form>
-        <MainLayoutTour />
-
+          <MainLayoutTour />
         </Form>
       </Formik>
     </div>

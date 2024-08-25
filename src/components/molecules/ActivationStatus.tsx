@@ -10,15 +10,15 @@ function ActivationStatus({ name }: Activate_TP) {
   const { values, setFieldValue } = useFormikContext<any>();
   return (
     <div className="flex gap-2 items-center">
-      <label>{t("Activation Status")}</label>
+      <label>{t("Include")}</label>
       <Switch
         style={{ justifyContent: "center", cursor: "pointer" }}
-        onLabel={t("Active")}
-        offLabel={t("Not Active")}
+        onLabel={t("Yes")}
+        offLabel={t("No")}
         size="lg"
         name={name}
-        checked={values[name] == 1}
-        onChange={() => setFieldValue(name, values[name] == 1 ? 0 : 1)}
+        checked={values[name] == 'yes'}
+        onChange={() => setFieldValue(name, values[name] == 'yes' ? 'yes' : 'no')}
       />
     </div>
   );

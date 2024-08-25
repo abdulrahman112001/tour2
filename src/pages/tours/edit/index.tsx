@@ -50,12 +50,16 @@ function EditTour() {
         description: "",
       },
     ],
-    tour_accommodations: DetailsTour?.data?.tour_accommodations || [
+    tour_prices: DetailsTour?.data?.tour_prices || [
       {
         title: "",
-        description: "",
-        type: "",
+        from_month: "",
+        to_month: "",
         price: "",
+        prices:[{
+          title:"",
+          price:""
+        }]
       },
     ],
     frequently_questions: DetailsTour?.data?.tour_frequently_questions || [
