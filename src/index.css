@@ -813,7 +813,7 @@ main::-webkit-scrollbar,
 
 }
 .ql-editor{
-  /* direction: ltr !important; */
+  direction: ltr !important;
   /* text-align: ltr !important; */
   min-height: 150px;
 }

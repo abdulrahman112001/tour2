@@ -5,7 +5,7 @@ import { useFormikContext } from "formik";
 import { OptionType } from "../../../utils/helpers";
 import { Label } from "../../atoms";
 
-type SelectCities_tp = {
+type SelectPlaces_tp = {
   name: string;
   label?: string;
   placeholder?: string;
@@ -14,31 +14,28 @@ type SelectCities_tp = {
   required?: boolean;
   with_places?: boolean;
 };
-export default function SelectCities({
+export default function SelectPlaces({
   name,
   label,
   labelStyle = "",
   labelProps = {},
-  required,
   with_places,
-}: SelectCities_tp) {
-  const queryParams = {
-    // page: page,
-    with_places: with_places ? true : false,
-    page: 0,
-  };
-  const searchParams = new URLSearchParams(queryParams as any);
-  const endpoint = `cities?${searchParams.toString()}`;
+  required,
+}: SelectPlaces_tp) {
   const { data, isLoading, failureReason } = useFetch<any>({
-    queryKey: [endpoint],
-    endpoint: endpoint,
+    queryKey: ["places"],
+    endpoint: `places?per_page=-1`,
   });
   const { values, setFieldValue } = useFormikContext<any>();
+  console.log("🚀 ~ values:", values);
 
   const dataOptions = data?.data?.map((item: any) => ({
     value: item.id,
     label: item.name,
-    places: item.places,
+  }));
+  const dataOptionsWithCities = values?.places?.map((item: any) => ({
+    value: item.id,
+    label: item.name,
   }));
   const selectedCountry = dataOptions?.find(
     (option: OptionType) => option?.value == values[name]
@@ -49,12 +46,12 @@ export default function SelectCities({
         htmlFor=""
         {...labelProps}
         required={required}
-        className={`mb-3 text-sm ${labelStyle}`}
+        className={`mb-1 text-sm ${labelStyle}`}
       >
         {label}
       </Label>
       <Select
-        placeholder={`${t("choose city")}`}
+        placeholder={with_places ? `${t("choose city first")}` :`${t("choose city")}`}
         // label={label}
         id="optionStatus"
         name={name}
@@ -63,15 +60,8 @@ export default function SelectCities({
         isDisabled={!isLoading && !!failureReason}
         loadingPlaceholder={`${t("loading")}`}
         loading={isLoading}
-        options={dataOptions}
-        onChange={
-          with_places
-            ? (option: OptionType) => {
-                setFieldValue(name, option?.value);
-                setFieldValue("places", option?.places);
-              }
-            :(option: OptionType) => { setFieldValue(name, option?.value)}
-        }
+        options={with_places ? dataOptionsWithCities : dataOptions}
+        onChange={(option: OptionType) => setFieldValue(name, option?.value)}
       />
     </div>
   );

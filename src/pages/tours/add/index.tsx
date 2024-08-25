@@ -17,7 +17,7 @@ function AddTour() {
         description: "",
       },
     ],
-    tour_accommodations: [
+    tour_prices: [
       {
         title: "",
         description: "",

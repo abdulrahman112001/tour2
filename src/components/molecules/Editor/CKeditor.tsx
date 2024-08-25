@@ -72,7 +72,7 @@ const CKeditor: React.FC<Editor_TP> = ({
     setValue(values[name]);
   }, [values, name]);
 
-  const direction = "rtl";
+  const direction = "ltr";
 
   return (
     <div className={className}>

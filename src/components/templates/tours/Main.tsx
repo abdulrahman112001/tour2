@@ -3,6 +3,10 @@ import { useNavigate } from "react-router-dom";
 import { useFetch } from "../../../hooks";
 import { AddButton } from "../../molecules/AddButton";
 import CardTour from "./CardTour";
+import Paginate from "../../molecules/table/Paginate";
+import PreviousPage from "../../atoms/icons/PreviousPage";
+import NextPaginationIc from "../../atoms/icons/NextPaginationIc";
+import { useState } from "react";
 type AllTours_TP = {
   data: {
     title: string;
@@ -12,6 +16,8 @@ type AllTours_TP = {
 };
 function Main() {
   const navigate = useNavigate();
+  const [page, setPage] = useState(0);
+
 
   const queryParams = {
     // page: page,
@@ -31,6 +37,9 @@ function Main() {
     queryKey: [endpoint],
     onSuccess: () => {},
   });
+  const handlePageChange = (selectedPage: number) => {
+    setPage(selectedPage);
+  };
 
   console.log("🚀 ~ Main ~ AllTours:", AllTours);
   return (
@@ -49,6 +58,15 @@ function Main() {
         {AllTours?.data?.map((item) => (
           <CardTour item={item} refetch={refetch} />
         ))}
+           <div className="flex justify-end mt-3">
+          <Paginate
+            pagesCount={AllTours?.data?.lastPage}
+            previousLabel={<PreviousPage />}
+            nextLabel={<NextPaginationIc />}
+            onPageChange={handlePageChange}
+            initialPage={page}
+          />
+        </div>
       </div>
     </div>
   );

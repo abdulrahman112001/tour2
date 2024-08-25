@@ -19,7 +19,7 @@ function TourIncludes() {
               <>
                 <p className="font-bold"> {index + 1}</p>
                 <div className="grid grid-cols-2 relative gap-2 border border-dashed p-2 rounded-xl my-2  ">
-                  <BaseInputRepeater
+                  {/* <BaseInputRepeater
                     id=""
                     label={`${t("title")}`}
                     name={`tour_includes[${index}][title]`}
@@ -32,7 +32,7 @@ function TourIncludes() {
                         e.target.value
                       )
                     }
-                  />
+                  /> */}
                   <BaseInputRepeater
                     id=""
                     label={`${t("description")}`}

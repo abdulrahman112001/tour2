@@ -16,6 +16,7 @@ import { Categories } from "../pages/categories/Index";
 import { Tours } from "../pages/tours/Index";
 import AddTour from "../pages/tours/add";
 import { Blogs } from "../pages/blogs/Index";
+import EditTour from "../pages/tours/edit";
 
 export const AllRoutesProvider = () => {
   const userString = localStorage.getItem("user");
@@ -41,6 +42,8 @@ export const AllRoutesProvider = () => {
         />
         <Route path="/tours" element={<Tours title={t("Tours")} />} />
         <Route path="/tours/add" element={<AddTour title={t("Add Tours")} />} />
+        <Route path="/tours/edit/:id" element={<EditTour title={t("Edit Tours")} />} />
+
         <Route path="/blogs" element={<Blogs title={t("blogs")} />} />
 
 

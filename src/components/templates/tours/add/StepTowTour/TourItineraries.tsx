@@ -2,6 +2,8 @@ import { FieldArray, useFormikContext } from "formik";
 import { t } from "i18next";
 import BaseInputRepeater from "../../../../molecules/formik-fields/BaseInputRepeater";
 import { SvgDelete } from "../../../../atoms/icons/SvgDelete";
+import SelectPlaces from "../../../../molecules/Select/SelectPlcaes.";
+import SelectCities from "../../../../molecules/Select/SelectCities";
 
 function TourItineraries() {
   const { values, setFieldValue, errors } = useFormikContext<any>();
@@ -17,49 +19,116 @@ function TourItineraries() {
           <div className=" col-span-full  relative">
             {values?.tour_itineraries?.map((item: any, index: any) => (
               <>
-                <p className="font-bold">Day - {index + 1}</p>
-                <div className="grid grid-cols-2 relative gap-2 border border-dashed p-2 rounded-xl my-2  ">
-                  <BaseInputRepeater
-                    id=""
-                    label={`${t("title")}`}
-                    name={`tour_itineraries[${index}][title]`}
-                    placeholder={`${t("title")}`}
-                    type="text"
-                    value={item?.title}
-                    onChange={(e) =>
-                      setFieldValue(
-                        `tour_itineraries[${index}][title]`,
-                        e.target.value
-                      )
-                    }
-                  />
-                  <BaseInputRepeater
-                    id=""
-                    label={`${t("description")}`}
-                    name={`tour_itineraries[${index}][description]`}
-                    placeholder={`${t("description")}`}
-                    type="text"
-                    value={item?.description}
-                    onChange={(e) =>
-                      setFieldValue(
-                        `tour_itineraries[${index}][description]`,
-                        e.target.value
-                      )
-                    }
-                  />
+                {values?.type == "tour_package" ? (
+                  <>
+                    <p className="font-bold">Day - {index + 1}</p>
+                    <div className="grid grid-cols-3 relative gap-2 border border-dashed p-2 rounded-xl my-2  ">
+                      <SelectCities
+                        name={`tour_itineraries[${index}][city_id]`}
+                        label="Cities"
+                        placeholder="Chose cities"
+                        with_places={true}
+                      />
+                      <SelectPlaces
+                        name={`tour_itineraries[${index}][place_id]`}
+                        label="Places"
+                        placeholder="Chose places"
+                        with_places={true}
+                      />
+                      <BaseInputRepeater
+                        id=""
+                        label={`${t("title")}`}
+                        name={`tour_itineraries[${index}][title]`}
+                        placeholder={`${t("title")}`}
+                        type="text"
+                        value={item?.title}
+                        onChange={(e) =>
+                          setFieldValue(
+                            `tour_itineraries[${index}][title]`,
+                            e.target.value
+                          )
+                        }
+                      />
+                      <BaseInputRepeater
+                        id=""
+                        label={`${t("description")}`}
+                        name={`tour_itineraries[${index}][description]`}
+                        placeholder={`${t("description")}`}
+                        type="text"
+                        value={item?.description}
+                        onChange={(e) =>
+                          setFieldValue(
+                            `tour_itineraries[${index}][description]`,
+                            e.target.value
+                          )
+                        }
+                      />
 
-                  {values?.tour_itineraries?.length > 1 && (
-                    <button
-                      type="button"
-                      className=" absolute ltr:right-[-25px]  top-[10px]"
-                      onClick={() => {
-                        remove(index);
-                      }}
-                    >
-                      <SvgDelete stroke="red" />
-                    </button>
-                  )}
-                </div>
+                      {values?.tour_itineraries?.length > 1 && (
+                        <button
+                          type="button"
+                          className=" absolute ltr:right-[-25px]  top-[10px]"
+                          onClick={() => {
+                            remove(index);
+                          }}
+                        >
+                          <SvgDelete stroke="red" />
+                        </button>
+                      )}
+                    </div>
+                  </>
+                ) : (
+                  <>
+                    <p className="font-bold">Place - {index + 1}</p>
+                    <div className="grid grid-cols-3 relative gap-2 border border-dashed p-2 rounded-xl my-2  ">
+                      <SelectPlaces
+                        name={`tour_itineraries[${index}][place_id]`}
+                        label="Places"
+                        placeholder="Chose places"
+                      />
+                      <BaseInputRepeater
+                        id=""
+                        label={`${t("title")}`}
+                        name={`tour_itineraries[${index}][title]`}
+                        placeholder={`${t("title")}`}
+                        type="text"
+                        value={item?.title}
+                        onChange={(e) =>
+                          setFieldValue(
+                            `tour_itineraries[${index}][title]`,
+                            e.target.value
+                          )
+                        }
+                      />
+                      <BaseInputRepeater
+                        id=""
+                        label={`${t("description")}`}
+                        name={`tour_itineraries[${index}][description]`}
+                        placeholder={`${t("description")}`}
+                        type="text"
+                        value={item?.description}
+                        onChange={(e) =>
+                          setFieldValue(
+                            `tour_itineraries[${index}][description]`,
+                            e.target.value
+                          )
+                        }
+                      />
+
+                      {values?.tour_itineraries?.length > 1 && (
+                        <button
+                          type="button"
+                          className=" absolute ltr:right-[-25px]  top-[10px]"
+                          onClick={() => {
+                            remove(index);
+                          }}
+                        >
+                          <SvgDelete stroke="red" />
+                        </button>
+                      )}
+                    </div>
+                  </>
+                )}
               </>
             ))}
             <button

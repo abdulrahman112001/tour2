@@ -21,8 +21,14 @@ function TourAvailabilities() {
                 <p className="font-bold"> {index + 1}</p>
                 <div className="grid grid-cols-2 relative gap-2 border border-dashed p-2 rounded-xl my-2  ">
                   <DateInputMantine
-                    label="date"
-                    name={`tour_availabilities[${index}][date]`}
+                    label="from date"
+                    name={`tour_availabilities[${index}][from_date]`}
+                    
+
+                  />
+                  <DateInputMantine
+                    label="to date"
+                    name={`tour_availabilities[${index}][to_date]`}
                   />
                   <BaseInputRepeater
                     id=""

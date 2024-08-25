@@ -11,7 +11,7 @@ function FrequentlyQuestions() {
     <div>
       {" "}
       <h1 className="text-start text-teal-600 font-semibold mb-8 text-[20px]">
-        {t("Tour Availabilities")}
+        {t("Frequently questions")}
       </h1>
       <FieldArray name="frequently_questions">
         {({ push, remove }) => (

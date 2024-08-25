@@ -3,22 +3,20 @@ import React, { useState } from "react";
 import { FaSuitcase, FaHiking } from "react-icons/fa";
 
 function StepOneTour() {
-  const [active, setActive] = useState(null);
-  const { setFieldValue } = useFormikContext();
+  const { setFieldValue , values } = useFormikContext();
+  console.log("🚀 ~ StepOneTour ~ values:", values)
 
-  const handleClick = (index) => {
-    setActive(index);
-  };
+
 
   return (
     <div className="h-[67vh] flex items-center">
       <div className="grid grid-cols-2 px-5 w-2/3 justify-between m-auto gap-5">
         <div
           className={`border p-5 py-10 rounded-md text-center cursor-pointer capitalize flex justify-center flex-col gap-3 items-center ${
-            active === 1 ? "bg-gray-300" : "hover:bg-gray-300"
+            values?.type == "tour_package" ? "bg-gray-300" : "hover:bg-gray-300"
           }`}
           onClick={() => {
-            handleClick(1);
+          
             setFieldValue("type", "tour_package");
           }}
         >
@@ -27,12 +25,11 @@ function StepOneTour() {
         </div>
         <div
           className={`border p-5 py-10 rounded-md text-center cursor-pointer capitalize flex justify-center flex-col gap-3 items-center ${
-            active === 2 ? "bg-gray-300" : "hover:bg-gray-300"
+            values?.type =="excursion" ? "bg-gray-300" : "hover:bg-gray-300"
           }`}
           onClick={() => {
-            handleClick(2);
-
-            setFieldValue("type", "excursion ");
+           
+            setFieldValue("type", "excursion");
           }}
         >
           <FaHiking className="text-5xl mb-3 text-gray-700" />

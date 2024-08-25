@@ -50,7 +50,7 @@ function DateInputMantine({
 
   const safeParseDate = (dateStr: string): Date | null => {
     if (!dateStr) return null;
-    const parsedDate = parse(dateStr, "dd-MM-yyyy", new Date());
+    const parsedDate = parse(dateStr, "yyyy-MM-dd", new Date());
     return isValid(parsedDate) ? parsedDate : null;
   };
 
@@ -75,7 +75,7 @@ function DateInputMantine({
   }, [date, setFieldValue, name_hj]);
 
   const handleDateChange = (date: Date | null) => {
-    const formattedDate = date ? format(date, "dd-MM-yyyy") : "";
+    const formattedDate = date ? format(date, "yyyy-MM-dd") : "";
     setFieldValue(name, formattedDate);
     setDate(date);
   };
@@ -99,10 +99,10 @@ function DateInputMantine({
         minDate={minDate}
         maxDate={maxDate}
         onChange={handleDateChange}
-        placeholder="DD/MM/YY"
+        placeholder="YY/MM/DD"
         name={name}
         disabled={disabled}
-        valueFormat="DD/MM/YYYY"
+        valueFormat="YYYY/MM/DD"
         style={{ border: error ? "1px solid red" : "", borderRadius: "5px" }}
         clearable
       />

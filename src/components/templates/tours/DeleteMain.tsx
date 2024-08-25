@@ -41,7 +41,7 @@ function DeleteMain({ refetch,Main_id }: DeleteMain_TP) {
         setID(Main_id);
       }}
     >
-      <button className=" border border-red-500 p-3 rounded-md px-10 text-red-500 ">
+      <button className=" border border-red-500 p-2 rounded-md px-10 text-red-500 w-full ">
         Delete
       </button>
     </div>

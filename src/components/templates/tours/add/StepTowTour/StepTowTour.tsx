@@ -1,14 +1,15 @@
-import React from "react";
+import { useFormikContext } from "formik";
 import { BaseInputField, TextAreaField } from "../../../../molecules";
 import SelectCategory from "../../../../molecules/Select/SelectCategory";
-import SelectCreateTags from "../../../../molecules/Select/SelectCreateTags";
-import TourItineraries from "./TourItineraries";
-import TourAvailabilities from "../StepFourTour/TourAvailabilities";
-import FrequentlyQuestions from "./FrequentlyQuestions";
-import CKeditor from "../../../../molecules/Editor/CKeditor";
 import SelectCities from "../../../../molecules/Select/SelectCities";
+import SelectCreateTags from "../../../../molecules/Select/SelectCreateTags";
+import FrequentlyQuestions from "./FrequentlyQuestions";
+import TourItineraries from "./TourItineraries";
+import CKeditor from "../../../../molecules/Editor/CKeditor";
 
 function StepTowTour() {
+  const { values } = useFormikContext();
+  console.log("🚀 ~ StepTowTour ~ values:", values);
   return (
     <div
       style={{
@@ -28,7 +29,11 @@ function StepTowTour() {
         <BaseInputField
           name="duration"
           type="num"
-          label="duration (Days)"
+          label={
+            values?.type == "tour_package"
+              ? "duration (Days)"
+              : "duration (Hours)"
+          }
           placeholder="Duration"
         />
         <SelectCategory
@@ -37,18 +42,11 @@ function StepTowTour() {
           placeholder="category"
         />
 
-        <SelectCreateTags label="create tags" name="tags" />
-        <SelectCities
-          name="from_city_id"
-          label="From city"
-          placeholder="From city"
-        />
-        <SelectCities
-          name="to_city_id"
-          label="Ti city"
-          placeholder="From city"
-        />
-        <div className="col-span-3">
+        <SelectCreateTags label="Tags" name="tags" />
+        <BaseInputField name="age_range" type="text" label="Age Range" id="" />
+        <BaseInputField name="run" type="text" label="Run" id="" />
+
+        {/* <div className="col-span-3">
           <TextAreaField
             id="description"
             label="description"
@@ -56,17 +54,15 @@ function StepTowTour() {
             placeholder="Description"
             rows={5}
           />
-        </div>
-        {/* <div className="col-span-3">
+        </div> */}
+        <div className="col-span-3">
           <CKeditor
             label="Description"
             name="description"
             placeholder="Description"
-
-
           />
-        </div> */}
-        <div className="col-span-2 ">
+        </div>
+        <div className="col-span-3 ">
           <TourItineraries />
         </div>
         <div className="col-span-2 ">

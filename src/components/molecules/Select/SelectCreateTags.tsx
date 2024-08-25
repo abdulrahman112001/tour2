@@ -40,7 +40,7 @@ const SelectCreateTags: React.FC<SelectCreateTagsProps> = ({
             setFieldValue(name, allValues);
           }}
 
-          // classNamePrefix={selectClassNames}
+
         />
       </div>
     </div>
