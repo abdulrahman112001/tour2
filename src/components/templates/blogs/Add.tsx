@@ -74,7 +74,12 @@ function Add({ refetch, update }: AddCurrency_TP) {
       <Formik
         initialValues={initialValues}
         // validationSchema={validationSchema}
-        onSubmit={(values: any) => handleSubmit(values)}
+        
+        onSubmit={(values: any) =>{ 
+          const image = values?.image[0];
+          handleSubmit({ ...values, image: image })
+        }
+        }
       >
         <Form>
           <HandleBackErrors>

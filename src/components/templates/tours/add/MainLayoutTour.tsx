@@ -80,92 +80,46 @@ function MainLayoutTour({ editIdTour }: MainLayoutTour_TP) {
         <Button
           variant="default"
           loading={LoadingPost}
-          onClick={
-            editIdTour
-              ? () =>
-                  active == 0
-                    ? editTour({
-                        type: values?.type,
-                        step: 1,
-                        _method: "PUT",
-                      })
-                    : active == 1
-                    ? editTour({
-                        tour_id: values?.tour_id,
-                        title: values?.title,
-                        description: values?.description,
-                        duration: values?.duration,
-                        tags: values?.tags,
-                        transportation_mode: "local",
-                        tour_itineraries: values?.tour_itineraries,
-                        frequently_questions: values?.frequently_questions,
-                        category_id: values?.category_id,
-                        from_city_id: values?.from_city_id,
-                        to_city_id: values?.to_city_id,
-                        age_range: values?.age_range,
-                        run: values?.run,
-                        // city_id: "1",
+          onClick={() =>
+            active == 0
+              ? addTour({
+                  type: values?.type,
+                  step: 1,
+                })
+              : active == 1
+              ? addTour({
+                  tour_id: values?.tour_id,
+                  title: values?.title,
+                  description: values?.description,
+                  duration: values?.duration,
+                  tags: values?.tags,
+                  transportation_mode: "local",
+                  tour_itineraries: values?.tour_itineraries,
+                  frequently_questions: values?.frequently_questions,
+                  category_id: values?.category_id,
+                  from_city_id: values?.from_city_id,
+                  to_city_id: values?.to_city_id,
+                  age_range: values?.age_range,
+                  run: values?.run,
+                  // city_id: "1",
+                  step: 2,
+                })
+              : active == 2
+              ? addTour({
+                  images: values?.images,
+                  pdf_file: values?.pdf_file,
+                  main_image: values?.main_image[0],
+                  tour_id: values?.tour_id,
+                  step: 3,
+                })
+              : addTour({
+                  // tour_availabilities: values?.tour_availabilities,
+                  tour_includes: values?.tour_includes,
+                  tour_prices: values?.tour_prices,
 
-                        step: 2,
-                        _method: "PUT",
-                      })
-                    : active == 2
-                    ? editTour({
-                        images: [values?.images],
-                        pdf_file: values?.pdf_file,
-                        main_image: values?.main_image,
-                        tour_id: values?.tour_id,
-                        step: 3,
-                        _method: "PUT",
-                      })
-                    : editTour({
-                        tour_includes: values?.tour_includes,
-                        tour_prices: values?.tour_prices,
-
-                        tour_id: values?.tour_id,
-                        step: 4,
-                        _method: "PUT",
-                      })
-              : () =>
-                  active == 0
-                    ? addTour({
-                        type: values?.type,
-                        step: 1,
-                      })
-                    : active == 1
-                    ? addTour({
-                        tour_id: values?.tour_id,
-                        title: values?.title,
-                        description: values?.description,
-                        duration: values?.duration,
-                        tags: values?.tags,
-                        transportation_mode: "local",
-                        tour_itineraries: values?.tour_itineraries,
-                        frequently_questions: values?.frequently_questions,
-                        category_id: values?.category_id,
-                        from_city_id: values?.from_city_id,
-                        to_city_id: values?.to_city_id,
-                        age_range: values?.age_range,
-                        run: values?.run,
-                        // city_id: "1",
-                        step: 2,
-                      })
-                    : active == 2
-                    ? addTour({
-                        images: values?.images,
-                        pdf_file: values?.pdf_file,
-                        main_image: values?.main_image[0],
-                        tour_id: values?.tour_id,
-                        step: 3,
-                      })
-                    : addTour({
-                        // tour_availabilities: values?.tour_availabilities,
-                        tour_includes: values?.tour_includes,
-                        tour_prices: values?.tour_prices,
-
-                        tour_id: values?.tour_id,
-                        step: 4,
-                      })
+                  tour_id: values?.tour_id,
+                  step: 4,
+                })
           }
         >
           Next step

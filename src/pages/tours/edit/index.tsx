@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import MainLayoutTour from "../../../components/templates/tours/add/MainLayoutTour";
+import MainLayoutTour from "../../../components/templates/tours/update/MainLayoutTour";
 import { Form, Formik } from "formik";
 import { useParams } from "react-router-dom";
 import { useFetch } from "../../../hooks";
@@ -18,7 +18,6 @@ function EditTour() {
     queryKey: [endpoint],
     onSuccess: () => {},
   });
-  console.log("🚀 ~ EditTour ~ DetailsTour:", DetailsTour?.data);
 
   const initialValues = {
     type: DetailsTour?.data?.type || "",
@@ -34,8 +33,6 @@ function EditTour() {
     tour_id: DetailsTour?.data?.id || "",
     age_range: DetailsTour?.data?.age_range || "",
     run: DetailsTour?.data?.run || "",
-
-
 
     tour_itineraries: DetailsTour?.data?.tour_itineraries || [
       {
@@ -56,10 +53,12 @@ function EditTour() {
         from_month: "",
         to_month: "",
         price: "",
-        prices:[{
-          title:"",
-          price:""
-        }]
+        prices: [
+          {
+            title: "",
+            price: "",
+          },
+        ],
       },
     ],
     frequently_questions: DetailsTour?.data?.tour_frequently_questions || [
@@ -75,8 +74,8 @@ function EditTour() {
         status: "yes",
       },
     ],
-    images: [],
-    main_image: [],
+    images: DetailsTour?.data?.images || [],
+    main_image:[ DetailsTour?.data?.main_image] || [],
     pdf_file: [],
   };
   if (isLoading) return <Spinner />;

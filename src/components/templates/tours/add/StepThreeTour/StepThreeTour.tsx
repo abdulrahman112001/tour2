@@ -7,6 +7,7 @@ import TourAvailabilities from "./TourAvailabilities";
 import FrequentlyQuestions from "./FrequentlyQuestions";
 import { DropFile } from "../../../../molecules/files/DropFile";
 import { Label } from "../../../../atoms";
+import UploadDoc from "../../../../molecules/files/UploadDoc";
 
 function StepThreeTour() {
   return (
@@ -16,18 +17,16 @@ function StepThreeTour() {
         overflow: "scroll",
         padding: "10px",
       }}
+      className="grid  grid-cols-2 gap-2"
     >
       <div className="">
-        <Label>Images</Label>
-        <DropFile name="images" />
+        <UploadDoc name="images" label="Images" accept=""  />
       </div>
       <div className="">
-        <Label>Main Image</Label>
-        <DropFile name="main_image" />
+        <UploadDoc name="main_image" label="Main Image" />
       </div>
       <div className="">
-        <Label>Pdf file</Label>
-        <DropFile name="pdf_file" />
+        <UploadDoc name="pdf_file" label="Pdf file" />
       </div>
     </div>
   );
