@@ -1,5 +1,10 @@
 import { useFormikContext } from "formik";
-import { BaseInputField, TextAreaField } from "../../../../molecules";
+import {
+  BaseInputField,
+  Checkbox,
+  CheckBoxField,
+  TextAreaField,
+} from "../../../../molecules";
 import SelectCategory from "../../../../molecules/Select/SelectCategory";
 import SelectCities from "../../../../molecules/Select/SelectCities";
 import SelectCreateTags from "../../../../molecules/Select/SelectCreateTags";
@@ -8,8 +13,16 @@ import TourItineraries from "./TourItineraries";
 import CKeditor from "../../../../molecules/Editor/CKeditor";
 
 function StepTowTour() {
-  const { values } = useFormikContext();
+  const { values, setFieldValue } = useFormikContext();
   console.log("🚀 ~ StepTowTour ~ values:", values);
+  const handleCheckboxChange = (name: string) => {
+    setFieldValue(name, values[name] == 1 ? 0 : 1);
+  };
+  const handleCityChange = (city_id) => {
+    values.tour_itineraries.forEach((_, index) => {
+      setFieldValue(`tour_itineraries[${index}][city_id]`, city_id?.value);
+    });
+  };
   return (
     <div
       style={{
@@ -19,6 +32,14 @@ function StepTowTour() {
       }}
     >
       <div className="grid grid-cols-3 gap-2">
+        <div className="col-span-3">
+          <Checkbox
+            name="is_best_deal"
+            label="deal"
+            checked={values?.is_best_deal == 1}
+            onChange={() => handleCheckboxChange("is_best_deal")}
+          />
+        </div>
         <BaseInputField
           name="title"
           type="text"
@@ -55,6 +76,15 @@ function StepTowTour() {
             rows={5}
           />
         </div> */}
+         {values?.type == "excursion" && (
+          <SelectCities
+            name={`tour_itineraries[0][city_id]`}
+            label="City"
+            placeholder="Choose city"
+            // with_places={true}
+            onChange={(value) => handleCityChange(value)}
+          />
+        )}
         <div className="col-span-3">
           <CKeditor
             label="Description"

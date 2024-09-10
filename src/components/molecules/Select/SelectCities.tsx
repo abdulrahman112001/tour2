@@ -21,7 +21,8 @@ export default function SelectCities({
   labelProps = {},
   required,
   with_places,
-  value
+  value,
+  onChange
 }: SelectCities_tp) {
   console.log("🚀 ~ value:", value)
   const queryParams = {
@@ -72,7 +73,7 @@ export default function SelectCities({
                 setFieldValue(name, option?.value);
                 setFieldValue("places", option?.places);
               }
-            :(option: OptionType) => { setFieldValue(name, option?.value)}
+            :onChange ? onChange  :(option: OptionType) => { setFieldValue(name, option?.value)}
         }
       />
     </div>

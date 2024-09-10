@@ -101,6 +101,8 @@ function MainLayoutTour({ editIdTour }: MainLayoutTour_TP) {
                   to_city_id: values?.to_city_id,
                   age_range: values?.age_range,
                   run: values?.run,
+                  is_best_deal: values?.is_best_deal,
+
                   // city_id: "1",
                   step: 2,
                 })

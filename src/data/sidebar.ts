@@ -6,8 +6,14 @@ import {
   IoTicketOutline,
   IoJournalOutline,
   IoCalendarOutline,
+  IoCallOutline,
+  IoPeopleOutline,
+  IoInformationCircleOutline,
+  IoDocumentTextOutline,
+  IoShieldCheckmarkOutline,
+  IoSettingsOutline,
 } from "react-icons/io5";
-import { FaRegFlag, FaSuitcaseRolling } from "react-icons/fa";
+import { FaRegFlag, FaSuitcaseRolling, FaCity } from "react-icons/fa";
 import { IconType } from "react-icons/lib";
 
 export type MenuItem_TP = {
@@ -37,7 +43,7 @@ export const linksData = [
     link: "/countries",
   },
   {
-    icon: IoEarthOutline,
+    icon: FaCity,
     label: "Cities",
     link: "/cities",
   },
@@ -61,11 +67,32 @@ export const linksData = [
     label: "Blogs",
     link: "/blogs",
   },
-  // {
-  //   icon: IoTicketOutline,
-  //   label: "Coupons",
-  //   link: "/coupons",
-  // },
+  {
+    icon: IoSettingsOutline,
+    label: "Settings",
+    links: [
+      {
+        icon: IoCallOutline,
+        label: "Contact",
+        link: "/setting-contact",
+      },
+      {
+        icon: IoInformationCircleOutline,
+        label: "About",
+        link: "/setting-about",
+      },
+      {
+        icon: IoDocumentTextOutline,
+        label: "Terms Condition",
+        link: "/setting-terms",
+      },
+      {
+        icon: IoShieldCheckmarkOutline,
+        label: "Privacy Policy",
+        link: "/setting-privacy",
+      },
+    ],
+  },
   {
     icon: IoCalendarOutline,
     label: "Bookings",

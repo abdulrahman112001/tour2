@@ -33,6 +33,7 @@ function EditTour() {
     tour_id: DetailsTour?.data?.id || "",
     age_range: DetailsTour?.data?.age_range || "",
     run: DetailsTour?.data?.run || "",
+    is_best_deal: DetailsTour?.data?.is_best_deal ? DetailsTour?.data?.is_best_deal : '',
 
     tour_itineraries: DetailsTour?.data?.tour_itineraries || [
       {
@@ -75,7 +76,7 @@ function EditTour() {
       },
     ],
     images: DetailsTour?.data?.images || [],
-    main_image:[ DetailsTour?.data?.main_image] || [],
+    main_image: [DetailsTour?.data?.main_image] || [],
     pdf_file: [],
   };
   if (isLoading) return <Spinner />;

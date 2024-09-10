@@ -34,7 +34,7 @@ export function useMutate<response_T>({
   const isRTL = useIsRTL();
   const baseURL = import.meta.env.VITE_BASE_URL;
 
-  const { data, isLoading, isSuccess, mutate, failureReason, isError } =
+  const { data, isLoading, isSuccess, mutate, failureReason, isError  , } =
     useMutation({
       mutationKey,
       mutationFn: (values) => {

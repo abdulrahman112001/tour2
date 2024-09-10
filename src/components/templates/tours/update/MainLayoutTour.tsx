@@ -64,6 +64,7 @@ function MainLayoutTour({ editIdTour }: MainLayoutTourProps) {
           to_city_id: values?.to_city_id,
           age_range: values?.age_range,
           run: values?.run,
+          is_best_deal: values?.is_best_deal,
           step: 2,
           _method: "PUT",
         };
@@ -94,6 +95,9 @@ function MainLayoutTour({ editIdTour }: MainLayoutTourProps) {
       <Tabs.List>
         <Tabs.Tab
           value="firstStep"
+          // style={{
+          //   border:"1px solid"
+          // }}
           leftSection={<IconPhoto style={iconStyle} />}
         >
           First step
