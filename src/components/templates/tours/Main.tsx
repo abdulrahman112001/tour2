@@ -7,6 +7,8 @@ import Paginate from "../../molecules/table/Paginate";
 import PreviousPage from "../../atoms/icons/PreviousPage";
 import NextPaginationIc from "../../atoms/icons/NextPaginationIc";
 import { useState } from "react";
+import { ModalTemplate } from "../../molecules/ModalTemplate";
+import AddSeo from "../../molecules/seo/AddSeo";
 type AllTours_TP = {
   data: {
     title: string;
@@ -17,7 +19,9 @@ type AllTours_TP = {
 function Main() {
   const navigate = useNavigate();
   const [page, setPage] = useState(0);
-
+  const [isModalSeoOpen, setIsModalSeoOpen] = useState(false);
+  const [model_id, setModel_id] = useState("");
+  const [MainData, setMainData] = useState({});
 
   const queryParams = {
     // page: page,
@@ -58,7 +62,21 @@ function Main() {
         {AllTours?.data?.map((item) => (
           <CardTour item={item} refetch={refetch} />
         ))}
-           <div className="flex justify-end mt-3">
+        <ModalTemplate
+          isOpen={isModalSeoOpen}
+          onClose={() => {
+            setIsModalSeoOpen(false);
+          }}
+        >
+          <AddSeo
+            refetch={refetch}
+            update={MainData}
+            model_type="blog"
+            model_id={model_id}
+            setIsModalSeoOpen={setIsModalSeoOpen}
+          />
+        </ModalTemplate>
+        <div className="flex justify-end mt-3">
           <Paginate
             pagesCount={AllTours?.data?.lastPage}
             previousLabel={<PreviousPage />}

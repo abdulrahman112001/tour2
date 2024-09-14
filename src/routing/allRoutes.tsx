@@ -22,6 +22,9 @@ import { Contact } from "../pages/setting/contact";
 import { About } from "../pages/setting/about";
 import { Terms } from "../pages/setting/terms";
 import { Privacy } from "../pages/setting/privacy";
+import { Bookings } from "../pages/bookings/Index";
+import { Files } from "../pages/bookings/files/Index";
+import { DetailsFile } from "../pages/bookings/files/detailsFile/Index";
 
 export const AllRoutesProvider = () => {
   const userString = localStorage.getItem("user");
@@ -47,19 +50,33 @@ export const AllRoutesProvider = () => {
         />
         <Route path="/tours" element={<Tours title={t("Tours")} />} />
         <Route path="/tours/add" element={<AddTour title={t("Add Tours")} />} />
-        <Route path="/tours/edit/:id" element={<EditTour title={t("Edit Tours")} />} />
-        <Route path="/setting-contact" element={<Contact title={t("Sitting Contact")} />} />
-        <Route path="/setting-about" element={<About title={t("Sitting About")} />} />
-        <Route path="/setting-terms" element={<Terms title={t("Sitting Terms")} />} />
-        <Route path="/setting-privacy" element={<Privacy title={t("Sitting Privacy")} />} />
-
-
+        <Route
+          path="/tours/edit/:id"
+          element={<EditTour title={t("Edit Tours")} />}
+        />
+        <Route
+          path="/setting-contact"
+          element={<Contact title={t("Sitting Contact")} />}
+        />
+        <Route
+          path="/setting-about"
+          element={<About title={t("Sitting About")} />}
+        />
+        <Route
+          path="/setting-terms"
+          element={<Terms title={t("Sitting Terms")} />}
+        />
+        <Route
+          path="/setting-privacy"
+          element={<Privacy title={t("Sitting Privacy")} />}
+        />
+        <Route path="/requests" element={<Bookings title={t("bookings")} />} />
+        <Route path="/requests/files" element={<Files title={t("Files")} />} />
+        <Route path="/requests/files/:id" element={<DetailsFile title={t("Details Files")} />} />
 
 
 
         <Route path="/blogs" element={<Blogs title={t("blogs")} />} />
-
-
       </Route>
 
       <Route

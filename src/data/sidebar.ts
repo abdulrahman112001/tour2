@@ -96,6 +96,19 @@ export const linksData = [
   {
     icon: IoCalendarOutline,
     label: "Bookings",
-    link: "/bookings",
+    // link: "/bookings",
+    links: [
+      {
+        icon: IoShieldCheckmarkOutline,
+        label: "Requests",
+        link: "/requests",
+      },
+      {
+        icon: IoShieldCheckmarkOutline,
+        label: "Files",
+        link: "/requests/files",
+      },
+    ]
+   
   },
 ];

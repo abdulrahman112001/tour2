@@ -5,6 +5,8 @@ import { t } from "i18next";
 import DropDown from "../../molecules/DropDown/DropDown";
 import DeleteMain from "./DeleteMain";
 import UpdateIcon from "../../molecules/UpdateIcon";
+import { Add } from "../../atoms/icons/Add";
+import { AddIcon } from "../../atoms/icons";
 
 type RefetchFunction = () => void;
 type setMainDataFunction = React.Dispatch<React.SetStateAction<boolean>>;
@@ -14,7 +16,9 @@ export const generateColumns = (
   page: number,
   refetch: RefetchFunction,
   setMainData: setMainDataFunction,
-  setIsModalOpen: any
+  setIsModalOpen: any,
+  setIsModalSeoOpen: any,
+  setModel_id
 ): ColumnDef<any>[] => {
   return [
     {
@@ -47,6 +51,34 @@ export const generateColumns = (
               setData={setMainData}
             />
             <DeleteMain refetch={refetch} info={info} />
+          </DropDown>
+        </div>
+      ),
+    },
+    {
+      header: `${t("Seo")}`,
+      accessorKey: "actions",
+      cell: (info) => (
+        <div className="flex justify-center">
+          <DropDown>
+            <div
+              className="flex items-center gap-1 text-[#70707e] p-1"
+              onClick={() => {
+                setModel_id(info.row.original?.id);
+                setIsModalSeoOpen(true);
+              }}
+            >
+              <AddIcon className="text-[18px] text-[#B5B5C3]" />
+              <span>Add</span>
+            </div>
+            <UpdateIcon
+              refetch={refetch}
+              setModel={setIsModalSeoOpen}
+              info={info}
+              setData={setMainData}
+            />
+
+            {/* <DeleteMain refetch={refetch} info={info} /> */}
           </DropDown>
         </div>
       ),

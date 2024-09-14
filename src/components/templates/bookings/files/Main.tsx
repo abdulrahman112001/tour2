@@ -1,29 +1,27 @@
 import React, { useMemo, useState } from "react";
-import { useFetch, useIsRTL } from "../../../hooks";
-import { pagePaginate } from "../../../utils/helpers";
+import { pagePaginate } from "../../../../utils/helpers";
+import { useFetch, useIsRTL } from "../../../../hooks";
 import { generateColumns } from "./generateColumns";
-import { AddButton } from "../../molecules/AddButton";
-import MainLayout from "../../molecules/MainLayout";
-import { t } from "i18next";
-import { ModalTemplate } from "../../molecules/ModalTemplate";
+import MainLayout from "../../../molecules/MainLayout";
+import { AddButton } from "../../../molecules/AddButton";
+import { ModalTemplate } from "../../../molecules/ModalTemplate";
 import Add from "./Add";
-import { Table } from "../../organisms/tantable/Table";
-import Paginate from "../../molecules/table/Paginate";
-import PreviousPage from "../../atoms/icons/PreviousPage";
-import NextPaginationIc from "../../atoms/icons/NextPaginationIc";
-import CardTour from "../tours/CardTour";
-import { useNavigate } from "react-router-dom";
-import AddSeo from "../../molecules/seo/AddSeo";
+import AddSeo from "../../../molecules/seo/AddSeo";
+import { Table } from "../../../organisms/tantable/Table";
+import Paginate from "../../../molecules/table/Paginate";
+import PreviousPage from "../../../atoms/icons/PreviousPage";
+import NextPaginationIc from "../../../atoms/icons/NextPaginationIc";
+import { t } from "i18next";
 
 function Main() {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [MainData, setMainData] = useState({});
   const [isModalSeoOpen, setIsModalSeoOpen] = useState(false);
   const [model_id, setModel_id] = useState("");
 
   const [page, setPage] = useState(0);
   const [pagePagination, setPagePagination] = useState(pagePaginate);
   const [pageSize, setPageSize] = useState(10);
-  const [MainData, setMainData] = useState({});
 
   const isRTL = useIsRTL();
 
@@ -33,7 +31,7 @@ function Main() {
     // per_page: pageSize,
   };
   const searchParams = new URLSearchParams(queryParams as any);
-  const endpoint = `blogs?${searchParams.toString()}`;
+  const endpoint = `files?${searchParams.toString()}`;
   const { data, refetch, isSuccess, isFetching, isLoading } = useFetch({
     endpoint: endpoint,
     queryKey: [endpoint],
