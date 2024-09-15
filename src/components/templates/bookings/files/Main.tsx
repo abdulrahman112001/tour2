@@ -31,7 +31,7 @@ function Main() {
     // per_page: pageSize,
   };
   const searchParams = new URLSearchParams(queryParams as any);
-  const endpoint = `files?${searchParams.toString()}`;
+  const endpoint = `files${searchParams.toString()}`;
   const { data, refetch, isSuccess, isFetching, isLoading } = useFetch({
     endpoint: endpoint,
     queryKey: [endpoint],

@@ -18,8 +18,8 @@ export const generateColumns = (
   refetch: RefetchFunction,
   setMainData: setMainDataFunction,
   setIsModalOpen: any,
-  setIsModalSeoOpen: any,
-  setModel_id
+  setOpen: any,
+  setModel_id: any
 ): ColumnDef<any>[] => {
   return [
     {
@@ -46,60 +46,15 @@ export const generateColumns = (
       header: `${t("status")}`,
       accessorKey: "status",
       cell: (info) => (
-        <div>
+        <div onClick={() => setModel_id(info?.row?.original?.id)}>
           <MenuChangeStatus
             initialStatus={info?.row?.original.status}
             bookingId={info?.row?.original?.id}
             refetch={refetch}
+            setOpen={setOpen}
           />
         </div>
       ),
     },
-
-    // {
-    //   header: `${t("Actions")}`,
-    //   accessorKey: "actions",
-    //   cell: (info) => (
-    //     <div className="flex justify-center">
-    //       <DropDown>
-    //         <UpdateIcon
-    //           refetch={refetch}
-    //           setModel={setIsModalOpen}
-    //           info={info}
-    //           setData={setMainData}
-    //         />
-    //         <DeleteMain refetch={refetch} info={info} />
-    //       </DropDown>
-    //     </div>
-    //   ),
-    // },
-    // {
-    //   header: `${t("Seo")}`,
-    //   accessorKey: "actions",
-    //   cell: (info) => (
-    //     <div className="flex justify-center">
-    //       <DropDown>
-    //         <div
-    //           className="flex items-center gap-1 text-[#70707e] p-1"
-    //           onClick={() => {
-    //             setModel_id(info.row.original?.id);
-    //             setIsModalSeoOpen(true);
-    //           }}
-    //         >
-    //           <AddIcon className="text-[18px] text-[#B5B5C3]" />
-    //           <span>Add</span>
-    //         </div>
-    //         <UpdateIcon
-    //           refetch={refetch}
-    //           setModel={setIsModalSeoOpen}
-    //           info={info}
-    //           setData={setMainData}
-    //         />
-
-    //         {/* <DeleteMain refetch={refetch} info={info} /> */}
-    //       </DropDown>
-    //     </div>
-    //   ),
-    // },
   ];
 };

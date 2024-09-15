@@ -6,15 +6,14 @@ import {
   IconPhone,
   IconCreditCard,
   IconAlertCircle,
-} from "@tabler/icons-react"; // استيراد أيقونات مختلفة
+} from "@tabler/icons-react"; 
 import { useMutate } from "../../hooks";
 import { notify } from "../../utils/toast";
 
-function MenuChangeStatus({ initialStatus, refetch, bookingId }) {
+function MenuChangeStatus({ initialStatus, refetch, bookingId , setOpen }) {
   const [status, setStatus] = useState(initialStatus);
-  console.log("🚀 ~ MenuChangeStatus ~ status:", status);
 
-  const getIconForStatus = (label) => {
+  const getIconForStatus = (label: string) => {
     switch (label) {
       case "pending":
         return <IconAlertCircle style={{ width: rem(17), height: rem(17) }} />;
@@ -31,8 +30,7 @@ function MenuChangeStatus({ initialStatus, refetch, bookingId }) {
     }
   };
 
-  const getBackgroundColorForStatus = (label) => {
-    console.log("🚀 ~ getBackgroundColorForStatus ~ label:", label);
+  const getBackgroundColorForStatus = (label: any) => {
     switch (label) {
       case "pending":
         return "bg-orange-500";
@@ -50,7 +48,7 @@ function MenuChangeStatus({ initialStatus, refetch, bookingId }) {
   };
 
   const { mutate, isLoading } = useMutate({
-    mutationKey: ["bookings/${bookingId}/change-status"],
+    mutationKey: [`bookings/${bookingId}/change-status`],
     endpoint: `bookings/${bookingId}/change-status`,
     onSuccess: () => {
       refetch();
@@ -61,6 +59,34 @@ function MenuChangeStatus({ initialStatus, refetch, bookingId }) {
     },
     formData: true,
   });
+
+  const handleStatusChange = (label: string) => {
+    if (label !== "confirmed") {
+      mutate({
+        status: label,
+      });
+      setStatus(label);
+    }
+    if (label === "confirmed") {
+      setOpen(true); 
+    }
+  };
+
+  const isDisabled = (label: string) => {
+    switch (status) {
+      case "pending":
+        return label !== "lead_in"; 
+      case "lead_in":
+        return label !== "contact"; 
+      case "contact":
+        return label !== "confirmed"; 
+      case "confirmed":
+        return label !== "payment";
+      default:
+        return true;
+    }
+  };
+
   return (
     <div>
       <Menu width={200} shadow="md">
@@ -75,13 +101,9 @@ function MenuChangeStatus({ initialStatus, refetch, bookingId }) {
             (label) => (
               <React.Fragment key={label}>
                 <Menu.Item
-                  onClick={() => {
-                    mutate({
-                      status: label,
-                    });
-                    setStatus(label);
-                  }}
+                  onClick={() => handleStatusChange(label)}
                   leftSection={getIconForStatus(label)}
+                  disabled={isDisabled(label)}
                 >
                   {label}
                 </Menu.Item>

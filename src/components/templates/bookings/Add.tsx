@@ -15,7 +15,7 @@ import MainData from "./MainData";
 type AddCurrency_TP = {
   refetch: () => void;
   update: any;
-  data: any;
+
 };
 function Add({ refetch, update }: AddCurrency_TP) {
   const initialValues: initialValue_Tp = {

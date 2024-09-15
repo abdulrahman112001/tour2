@@ -14,10 +14,11 @@ import NextPaginationIc from "../../atoms/icons/NextPaginationIc";
 import CardTour from "../tours/CardTour";
 import { useNavigate } from "react-router-dom";
 import AddSeo from "../../molecules/seo/AddSeo";
+import AddConfirm from "./confirmedFile/AddConfirm";
 
 function Main() {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [isModalSeoOpen, setIsModalSeoOpen] = useState(false);
+  const [isOpen, setOpen] = useState(false);
   const [model_id, setModel_id] = useState("");
 
   const [page, setPage] = useState(0);
@@ -49,7 +50,7 @@ function Main() {
         refetch,
         setMainData,
         setIsModalOpen,
-        setIsModalSeoOpen,
+        setOpen,
         setModel_id
       ),
     [page, isRTL]
@@ -77,20 +78,20 @@ function Main() {
             setIsModalOpen(false);
           }}
         >
-          <Add refetch={refetch} update={MainData} data={data?.data?.data} />
+          <Add refetch={refetch} update={MainData} />
         </ModalTemplate>
         <ModalTemplate
-          isOpen={isModalSeoOpen}
+          isOpen={isOpen}
           onClose={() => {
-            setIsModalSeoOpen(false);
+            setOpen(false);
           }}
         >
-          <AddSeo
+          <AddConfirm
+            data={""}
             refetch={refetch}
-            update={MainData}
-            model_type="blog"
-            model_id={model_id}
-            setIsModalSeoOpen={setIsModalSeoOpen}
+            update={""}
+            bookingId={model_id}
+            setOpen={setOpen}
           />
         </ModalTemplate>
 
