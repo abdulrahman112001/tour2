@@ -111,4 +111,11 @@ export const linksData = [
     ]
    
   },
+  {
+    icon: IoCalendarOutline,
+    label: "Media",
+    link: "/media",
+  
+   
+  },
 ];

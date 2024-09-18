@@ -25,6 +25,8 @@ import { Privacy } from "../pages/setting/privacy";
 import { Bookings } from "../pages/bookings/Index";
 import { Files } from "../pages/bookings/files/Index";
 import { DetailsFile } from "../pages/bookings/files/detailsFile/Index";
+import { Media } from "../pages/media/Index";
+import DetailsFolder from "../pages/media/detailsFolder/Index";
 
 export const AllRoutesProvider = () => {
   const userString = localStorage.getItem("user");
@@ -72,8 +74,12 @@ export const AllRoutesProvider = () => {
         />
         <Route path="/requests" element={<Bookings title={t("bookings")} />} />
         <Route path="/requests/files" element={<Files title={t("Files")} />} />
-        <Route path="/requests/files/:id" element={<DetailsFile title={t("Details Files")} />} />
-
+        <Route
+          path="/requests/files/:id"
+          element={<DetailsFile title={t("Details Files")} />}
+        />
+        <Route path="/media" element={<Media title={t("Media")} />} />
+        <Route path="/media/:id" element={<DetailsFolder title={t("Media")} />} />
 
 
         <Route path="/blogs" element={<Blogs title={t("blogs")} />} />

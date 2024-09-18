@@ -8,6 +8,7 @@ import {
 } from "@tabler/icons-react";
 import MainOrders from "./orders/MainOrders";
 import MainCommunications from "./communications/MainCommunications";
+import MainNote from "./Notes/MainNote";
 function Main() {
   const { id } = useParams();
   const iconStyle = { width: rem(12), height: rem(12) };
@@ -37,15 +38,15 @@ function Main() {
         </Tabs.List>
 
         <Tabs.Panel value="gallery">
-          <MainOrders file_id ={id}/>
+          <MainOrders file_id={id} />
         </Tabs.Panel>
 
-        <Tabs.Panel value="messages">Messages tab content</Tabs.Panel>
+        <Tabs.Panel value="messages">
+          <MainNote file_id={id} />
+        </Tabs.Panel>
 
         <Tabs.Panel value="settings">
-          <MainCommunications
-          file_id ={id}
-          />
+          <MainCommunications file_id={id} />
         </Tabs.Panel>
       </Tabs>
     </div>
