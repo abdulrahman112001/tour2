@@ -70,9 +70,9 @@ function MainLayoutTour({ editIdTour }: MainLayoutTourProps) {
         };
       case "thirdStep":
         return {
-          images: [values?.images],
+          images: values?.images?.map((item)=>item?.id),
           pdf_file: values?.pdf_file,
-          main_image: values?.main_image,
+          main_image: values?.main_image?.map((item)=>item?.id),
           tour_id: values?.tour_id,
           step: 3,
           _method: "PUT",

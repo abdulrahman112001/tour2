@@ -24,7 +24,7 @@ function Main() {
   const [MainData, setMainData] = useState({});
 
   const queryParams = {
-    // page: page,
+    page: page,
     // paginate: pagePagination,
     // per_page: pageSize,
   };

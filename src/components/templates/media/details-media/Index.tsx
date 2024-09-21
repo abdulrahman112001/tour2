@@ -22,13 +22,12 @@ function DetailsMedia({ id }) {
     endpoint: endpoint,
     queryKey: [endpoint],
   });
-  console.log("🚀 ~ DetailsMedia ~ AllMedia:", AllMedia);
   return (
     <LayoutMedia refetch={refetch}>
       <div>
         <div className="grid grid-cols-12 gap-1">
           {AllMedia?.data?.content?.data?.map((item) => (
-            <CardMedia item={item} />
+            <CardMedia item={item} refetch={refetch} />
           ))}
         </div>
       </div>

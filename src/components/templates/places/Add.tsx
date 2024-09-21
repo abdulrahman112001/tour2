@@ -24,12 +24,11 @@ function Add({ refetch, update }: AddCurrency_TP) {
     latitude: update?.latitude || "",
     longitude: update?.longitude || "",
     images:
-    update?.images?.map((item) => ({
-      path: item.url,
-      type: "image",
-    })) || [],
-  panar_image: [{ path: update?.panar_image, type: "image" }] || [],
-
+      update?.images?.map((item) => ({
+        url: item.url,
+        id: item?.id,
+      })) || [],
+    panar_image:  [],
   };
   const { mutate, isLoading } = useMutate({
     mutationKey: ["places"],
@@ -57,8 +56,6 @@ function Add({ refetch, update }: AddCurrency_TP) {
   });
 
   const handleSubmit = (values: AllCurrencyTable_TP) => {
- 
-
     const submissionData = { ...values };
     if (Object.entries(update).length) {
       PostUpdate({ ...submissionData, _method: "PUT" });

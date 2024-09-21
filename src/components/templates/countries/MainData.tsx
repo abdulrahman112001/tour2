@@ -3,8 +3,13 @@ import { BaseInputField, InnerFormLayout } from "../../molecules";
 import ActivationStatus from "../../molecules/ActivationStatus";
 import { DropFile } from "../../molecules/files/DropFile";
 import { Label } from "../../atoms";
+import UploadMedia from "../media/UploadMedia";
+import { useState } from "react";
+import { useFormikContext } from "formik";
 
 function MainData(update: any) {
+  const { values } = useFormikContext();
+  console.log("🚀 ~ MainData ~ values:", values);
   return (
     <div>
       <InnerFormLayout
@@ -90,14 +95,20 @@ function MainData(update: any) {
               required
             />
           </div>
-          <div className="col-span-12 md:col-span-1">
+          {/* <div className="cursor-pointer" onClick={() => setOpen(true)}>
+            upload image
+          </div> */}
+          <UploadMedia name="images" isMulti label="images" />
+          <UploadMedia name="panar_image" label="panner image" />
+
+          {/* <div className="col-span-12 md:col-span-1">
             <Label>images</Label>
             <DropFile name="images" />
           </div>
           <div className="col-span-12 md:col-span-1">
             <Label>banner  image</Label>
             <DropFile name="panar_image" />
-          </div>
+          </div> */}
         </div>
       </InnerFormLayout>
     </div>

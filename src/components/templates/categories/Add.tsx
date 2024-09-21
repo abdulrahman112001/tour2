@@ -24,10 +24,10 @@ function Add({ refetch, update }: AddCurrency_TP) {
     is_active: update?.is_active || "0",
     images:
       update?.images?.map((item) => ({
-        path: item.url,
-        type: "image",
+        url: item.url,
+        id: item?.id,
       })) || [],
-    panar_image: [{ path: update?.panar_image, type: "image" }] || [],
+    panar_image: [],
   };
   const { mutate, isLoading } = useMutate({
     mutationKey: ["categories"],

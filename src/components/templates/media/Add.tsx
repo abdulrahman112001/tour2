@@ -51,7 +51,7 @@ function Add({ refetch, update, setIsModalOpen, FolderId }: AddCurrency_TP) {
         initialValues={initialValues}
         // validationSchema={validationSchema}
         onSubmit={(values: any) => {
-          const file = values?.file[0];
+          const file = values?.file;
           handleSubmit({ ...values, file });
         }}
       >

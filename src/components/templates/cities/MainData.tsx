@@ -4,6 +4,7 @@ import ActivationStatus from "../../molecules/ActivationStatus";
 import SelectCountry from "../../molecules/Select/SelectCountry";
 import { Label } from "../../atoms";
 import { DropFile } from "../../molecules/files/DropFile";
+import UploadMedia from "../media/UploadMedia";
 
 function MainData(update: any) {
   return (
@@ -60,14 +61,8 @@ function MainData(update: any) {
               required
             />
           </div>
-          <div className="col-span-12 md:col-span-3">
-            <Label>images</Label>
-            <DropFile name="images" />
-          </div>
-          <div className="col-span-12 md:col-span-3">
-            <Label>banner  image</Label>
-            <DropFile name="panar_image" />
-          </div>
+          <UploadMedia name="images" isMulti label="images" />
+          <UploadMedia name="panar_image" label="panner image" />
         </div>
       </InnerFormLayout>
     </div>

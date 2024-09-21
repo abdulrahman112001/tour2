@@ -6,11 +6,12 @@ type CardMedia_TP = {
   refetch?: () => void;
 };
 function CardMedia({ item, refetch }: CardMedia_TP) {
+  console.log("🚀 ~ CardMedia ~ item:", item)
   return (
-    <div>
+    <div className="relative">
       <div className="cursor-pointer">
         <img
-          src={item?.url}
+          src={item?.url || item?.content?.url}
           alt=""
           className="w-[120px] h-[120px] rounded-md  border"
         />

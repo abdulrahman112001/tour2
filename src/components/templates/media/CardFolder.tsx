@@ -3,6 +3,7 @@ import { FaFolderOpen } from "react-icons/fa6";
 import { Link } from "react-router-dom";
 import CardMedia from "./CardMedia";
 import DeleteMain from "./DeleteMain";
+import DeleteFolder from "./DeleteFolder";
 
 function CardFolder({ item, refetch }) {
   return (
@@ -14,11 +15,11 @@ function CardFolder({ item, refetch }) {
             <p className="text-center">{item?.name}</p>
           </Link>
           <div className="cursor-pointer">
-            <DeleteMain file_id={item?.id} refetch={refetch} />
+            <DeleteFolder file_id={item?.id} refetch={refetch} />
           </div>
         </div>
       ) : (
-        <CardMedia item={item?.content} />
+        <CardMedia item={item}  refetch={refetch}/>
       )}
     </div>
   );

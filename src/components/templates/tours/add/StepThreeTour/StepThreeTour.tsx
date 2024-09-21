@@ -8,6 +8,7 @@ import FrequentlyQuestions from "./FrequentlyQuestions";
 import { DropFile } from "../../../../molecules/files/DropFile";
 import { Label } from "../../../../atoms";
 import UploadDoc from "../../../../molecules/files/UploadDoc";
+import UploadMedia from "../../../media/UploadMedia";
 
 function StepThreeTour() {
   return (
@@ -19,12 +20,9 @@ function StepThreeTour() {
       }}
       className="grid  grid-cols-2 gap-2"
     >
-      <div className="">
-        <UploadDoc name="images" label="Images" accept=""  />
-      </div>
-      <div className="">
-        <UploadDoc name="main_image" label="Main Image" />
-      </div>
+      <UploadMedia name="images" isMulti label="images" />
+      <UploadMedia name="main_image" label="main image" />
+
       <div className="">
         <UploadDoc name="pdf_file" label="Pdf file" />
       </div>

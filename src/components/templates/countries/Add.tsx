@@ -27,10 +27,10 @@ function Add({ refetch, update }: AddCurrency_TP) {
     longitude: update?.longitude || "",
     images:
       update?.images?.map((item) => ({
-        path: item.url,
-        type: "image",
+        url: item.url,
+        id: item?.id,
       })) || [],
-    panar_image: [{ path: update?.panar_image, type: "image" }] || [],
+    panar_image: [],
   };
   const { mutate, isLoading } = useMutate({
     mutationKey: ["coutnries"],
@@ -72,8 +72,10 @@ function Add({ refetch, update }: AddCurrency_TP) {
         initialValues={initialValues}
         // validationSchema={validationSchema}
         onSubmit={(values: any) => {
-          const panar_image = values?.panar_image[0];
-          handleSubmit({ ...values, panar_image: panar_image });
+          const panar_image = values?.panar_image[0]?.id;
+          const images = values?.images?.map((item) => item?.id);
+
+          handleSubmit({ ...values, panar_image: panar_image, images: images });
         }}
       >
         <Form>

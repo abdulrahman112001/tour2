@@ -76,7 +76,7 @@ function Add({ refetch, update }: AddCurrency_TP) {
         // validationSchema={validationSchema}
         
         onSubmit={(values: any) =>{ 
-          const image = values?.image[0];
+          const image = values?.image?.map((item)=>item?.id);
           handleSubmit({ ...values, image: image })
         }
         }

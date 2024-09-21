@@ -76,7 +76,7 @@ function EditTour() {
       },
     ],
     images: DetailsTour?.data?.images || [],
-    main_image: [DetailsTour?.data?.main_image] || [],
+    main_image:[],
     pdf_file: [],
   };
   if (isLoading) return <Spinner />;
