@@ -129,14 +129,14 @@ const UploadMedia: React.FC<UploadMediaProps> = ({
                       <div
                         className={`relative cursor-pointer ${
                           values[name]?.some(
-                            (img: MediaItem) => img?.id === item?.id
+                            (img: MediaItem) => img?.id === item?.content?.id
                           )
                             ? "border-2 border-red-500 rounded-md"
                             : ""
                         }`}
                         onClick={() =>
                           handleImageSelect(
-                            item?.id,
+                            item?.content?.id,
                             item?.url || item?.content?.url || ""
                           )
                         }
@@ -217,7 +217,7 @@ const UploadMedia: React.FC<UploadMediaProps> = ({
         {values[name]?.map((image: MediaItem) => (
           <div key={image?.id} className="relative m-2">
             <div className="border rounded-md p-1">
-              <img src={image?.url} alt="" className="w-20 h-20" />
+              <img src={image?.url} alt="" className="w-full  h-20" />
             </div>
             <button
               className="absolute top-0 right-0 bg-red-500 text-white  rounded w-5 h-5"

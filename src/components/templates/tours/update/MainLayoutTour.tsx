@@ -72,7 +72,7 @@ function MainLayoutTour({ editIdTour }: MainLayoutTourProps) {
         return {
           images: values?.images?.map((item)=>item?.id),
           pdf_file: values?.pdf_file,
-          main_image: values?.main_image?.map((item)=>item?.id),
+          main_image: values?.main_image[0]?.id ?values?.main_image[0]?.id : values?.main_image[0] ,
           tour_id: values?.tour_id,
           step: 3,
           _method: "PUT",

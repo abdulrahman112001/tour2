@@ -7,16 +7,22 @@ import { HandleBackErrors } from "../../../utils/utils-components/HandleBackErro
 import { Button } from "../../atoms";
 import { OuterFormLayout } from "../../molecules";
 import MainDataFolder from "./MainDataFolder";
+import { useParams } from "react-router-dom";
 
 type AddCurrency_TP = {
   refetch: () => void;
   update: any;
   setIsModalOpen: any;
 };
+
 function AddFolder({ refetch, update, setIsModalOpen }: AddCurrency_TP) {
+  const {id} = useParams()
+  console.log("🚀 ~ AddFolder ~ id:", id)
+
   const initialValues = {
     name: "",
   };
+  // const endPoint = id ? "media-fils/create-folder" : `media-files/create-folder/$`
   const { mutate, isLoading } = useMutate({
     mutationKey: ["media-files/create-folder"],
     endpoint: `media-files/create-folder`,
@@ -41,7 +47,7 @@ function AddFolder({ refetch, update, setIsModalOpen }: AddCurrency_TP) {
       <Formik
         initialValues={initialValues}
         onSubmit={(values: any) => {
-          handleSubmit({ ...values });
+          handleSubmit({ ...values , parent_id:id || null });
         }}
       >
         <Form>

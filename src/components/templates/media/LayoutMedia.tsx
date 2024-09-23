@@ -10,7 +10,6 @@ function LayoutMedia({ children, refetch, MainData }) {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isModalFolderOpen, setIsModalFolderOpen] = useState(false);
   const {id} = useParams()
-  console.log("🚀 ~ LayoutMedia ~ id:", id)
   return (
     <div>
       <div className=" flex justify-end gap-5 items mb-4">

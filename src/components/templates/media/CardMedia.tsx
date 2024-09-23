@@ -17,7 +17,7 @@ function CardMedia({ item, refetch }: CardMedia_TP) {
         />
         {/* <p>{item?.name}</p> */}
         <div>
-          <DeleteMain file_id={item?.id} refetch={refetch} />
+          <DeleteMain file_id={item?.content?.id} refetch={refetch} />
         </div>
       </div>
     </div>

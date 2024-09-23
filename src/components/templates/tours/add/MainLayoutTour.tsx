@@ -110,7 +110,8 @@ function MainLayoutTour({ editIdTour }: MainLayoutTour_TP) {
               ? addTour({
                   images: values?.images,
                   pdf_file: values?.pdf_file,
-                  main_image: values?.main_image[0],
+                  main_image: values?.main_image[0]?.id,
+
                   tour_id: values?.tour_id,
                   step: 3,
                 })

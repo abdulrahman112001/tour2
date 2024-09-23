@@ -16,6 +16,7 @@ type AddCurrency_TP = {
   FolderId?: string;
 };
 function Add({ refetch, update, setIsModalOpen, FolderId }: AddCurrency_TP) {
+  
   const initialValues = {
     file:
       update?.images?.map((item: { url: any }) => ({
