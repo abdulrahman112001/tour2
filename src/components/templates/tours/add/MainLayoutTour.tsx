@@ -108,8 +108,8 @@ function MainLayoutTour({ editIdTour }: MainLayoutTour_TP) {
                 })
               : active == 2
               ? addTour({
-                  images: values?.images,
-                  pdf_file: values?.pdf_file,
+                images: values?.images?.map((item)=>item?.id),
+                pdf_file: values?.pdf_file,
                   main_image: values?.main_image[0]?.id,
 
                   tour_id: values?.tour_id,

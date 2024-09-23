@@ -81,7 +81,7 @@ function StepTowTour() {
             name={`tour_itineraries[0][city_id]`}
             label="City"
             placeholder="Choose city"
-            // with_places={true}
+            with_places={true}
             onChange={(value) => handleCityChange(value)}
           />
         )}

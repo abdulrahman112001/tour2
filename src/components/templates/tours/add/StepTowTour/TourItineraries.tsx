@@ -7,7 +7,11 @@ import SelectCities from "../../../../molecules/Select/SelectCities";
 
 function TourItineraries() {
   const { values, setFieldValue, errors } = useFormikContext<any>();
-
+  const handleCityChange = (city_id) => {
+    values.tour_itineraries.forEach((_, index) => {
+      setFieldValue(`tour_itineraries[${index}][city_id]`, city_id);
+    });
+  };
   return (
     <div>
       {" "}
@@ -36,7 +40,6 @@ function TourItineraries() {
                         placeholder="Chose places"
                         with_places={true}
                         value={item?.place?.id}
-
                       />
                       <BaseInputRepeater
                         id=""
@@ -88,6 +91,15 @@ function TourItineraries() {
                         name={`tour_itineraries[${index}][place_id]`}
                         label="Places"
                         placeholder="Chose places"
+                        with_places
+                        value={item?.place_id}
+                        onChange={(e) => {
+                          setFieldValue(
+                            `tour_itineraries[${index}][place_id]`,
+                            e?.value
+                          );
+                          handleCityChange(e?.city_id);
+                        }}
                       />
                       <BaseInputRepeater
                         id=""

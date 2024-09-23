@@ -21,22 +21,24 @@ export default function SelectPlaces({
   labelProps = {},
   with_places,
   required,
-  value
+  value,
+  onChange
 }: SelectPlaces_tp) {
   const { data, isLoading, failureReason } = useFetch<any>({
     queryKey: ["places"],
     endpoint: `places?per_page=-1`,
   });
   const { values, setFieldValue } = useFormikContext<any>();
-  console.log("🚀 ~ values:", values);
 
   const dataOptions = data?.data?.map((item: any) => ({
     value: item.id,
     label: item.name,
+    
   }));
   const dataOptionsWithCities = values?.places?.map((item: any) => ({
     value: item.id,
     label: item.name,
+    city_id:item?.city_id
   }));
   const selectedCountry = dataOptions?.find(
     (option: OptionType) => option?.value ==(value || values[name])
@@ -62,7 +64,7 @@ export default function SelectPlaces({
         loadingPlaceholder={`${t("loading")}`}
         loading={isLoading}
         options={with_places ? dataOptionsWithCities : dataOptions}
-        onChange={(option: OptionType) => setFieldValue(name, option?.value)}
+        onChange={onChange ? onChange : (option: OptionType) => setFieldValue(name, option?.value)}
       />
     </div>
   );
