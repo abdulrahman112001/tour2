@@ -250,30 +250,25 @@ export const Table = <T extends object>({
           </thead>
 
           {isSuccess && !!data.length && (
-          
-              <tbody className="">
-                {table?.getRowModel()?.rows?.map((row) => (
-                  <tr key={row.id} className="border-b ">
-                    {row?.getVisibleCells()?.map((cell) => (
-                      <td
-                        className="whitespace-nowrap px-6 py-4 text-sm  font-light text-gray-300 td-col-dark first:text-black capitalize "
-                        key={cell.id}
-                        style={{
-                          background: !!row.original.is_free_session
-                            ? "#F4FFFA"
-                            : "",
-                        }}
-                      >
-                        {flexRender(
-                          cell?.column?.columnDef.cell,
-                          cell.getContext()
-                        )}
-                      </td>
-                    ))}
-                  </tr>
-                ))}
-              </tbody>
-        
+            <tbody className="">
+              {table?.getRowModel()?.rows?.map((row) => (
+                <tr key={row.id} className="border-b group">
+                  {row?.getVisibleCells()?.map((cell) => (
+                    <td
+                      className={`whitespace-nowrap cursor-pointer px-6 py-4 text-sm font-light text-gray-300 td-col-dark first:text-black capitalize group-hover:bg-[#F7F7F7] group-hover:text-black ${
+                        row.original.is_free_session ? "bg-[#F4FFFA]" : ""
+                      }`}
+                      key={cell.id}
+                    >
+                      {flexRender(
+                        cell?.column?.columnDef.cell,
+                        cell.getContext()
+                      )}
+                    </td>
+                  ))}
+                </tr>
+              ))}
+            </tbody>
           )}
           <tfoot>{generateFooters(footerData)}</tfoot>
         </table>

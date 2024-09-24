@@ -53,27 +53,52 @@ export function LinksGroup({
 
   return (
     <>
-      <UnstyledButton onClick={() => setOpened((o) => !o)} className={classes.control}>
+      <UnstyledButton
+        onClick={() => setOpened((o) => !o)}
+        className={classes.control}
+      >
         <Group justify="space-between" className="flex-nowrap" gap={0}>
-          <Box style={{ display: "flex", alignItems: "center" }} className="w-full ">
-            <ThemeIcon variant="light" size={30} style={{ backgroundColor: "transparent" }}>
-              <Link to={link}>
-                <Icon style={{ width: "23px", height: "23px", color: "#5f616a " }} />
-              </Link>
-            </ThemeIcon>
-            <Link to={link}>
+          <Link
+            to={link}
+            style={{ display: "flex", alignItems: "center", width: "100%" }}
+            className="hover:bg-gray-100 rounded-lg"
+          >
+            <Box
+              style={{
+                display: "flex",
+                alignItems: "center",
+                width: "100%",
+                backgroundColor:
+                  location.pathname === link ? "#f0f0f0" : "transparent", // Active background color
+                borderRadius: "8px", // Optional: to make the box rounded
+              }}
+              className="w-full py-1"
+            >
+              <ThemeIcon
+                variant="light"
+                size={30}
+                style={{ backgroundColor: "transparent" }}
+              >
+                <Icon
+                  style={{
+                    width: "23px",
+                    height: "23px",
+                    color: location.pathname === link ? "black" : "gray",
+                  }}
+                />
+              </ThemeIcon>
               <Box
                 mx="md"
                 className={
-                  location.pathname == link
-                    ? " w-full  rounded-md text-[#1d2327] font-bold"
+                  location.pathname === link
+                    ? "w-full rounded-md text-[#1d2327] font-bold"
                     : ""
                 }
               >
                 {t(label)}
               </Box>
-            </Link>
-          </Box>
+            </Box>
+          </Link>
 
           {visibleLinks.length > 0 && (
             <IconChevronLeft
@@ -88,8 +113,9 @@ export function LinksGroup({
           )}
         </Group>
       </UnstyledButton>
-      {visibleLinks.length > 0 ? <Collapse in={opened}>{items}</Collapse> : null}
-      
+      {visibleLinks.length > 0 ? (
+        <Collapse in={opened}>{items}</Collapse>
+      ) : null}
     </>
   );
 }

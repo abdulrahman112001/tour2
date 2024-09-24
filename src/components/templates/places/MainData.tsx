@@ -17,7 +17,7 @@ function MainData(update: any) {
         }
         scroll={true}
       >
-        <div className="col-span-12 grid  gap-2 grid-cols-1 md:grid-cols-3">
+        <div className="col-span-12 grid gap-2 grid-cols-1 md:grid-cols-2">
           <div>
             <BaseInputField
               id="name"
@@ -31,11 +31,7 @@ function MainData(update: any) {
             />
           </div>
           <div>
-            <SelectCities
-              name="city_id"
-              label="City"
-              placeholder="City"
-            />
+            <SelectCities name="city_id" label="City" placeholder="City" />
           </div>
 
           <div>

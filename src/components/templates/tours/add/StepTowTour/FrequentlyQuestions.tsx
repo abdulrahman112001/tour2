@@ -3,6 +3,7 @@ import { t } from "i18next";
 import BaseInputRepeater from "../../../../molecules/formik-fields/BaseInputRepeater";
 import { SvgDelete } from "../../../../atoms/icons/SvgDelete";
 import DateInputMantine from "../../../../molecules/formik-fields/DateInputMantine";
+import { TextAreaField } from "../../../../molecules";
 
 function FrequentlyQuestions() {
   const { values, setFieldValue, errors } = useFormikContext<any>();
@@ -19,8 +20,7 @@ function FrequentlyQuestions() {
             {values?.frequently_questions?.map((item: any, index: any) => (
               <>
                 <p className="font-bold"> {index + 1}</p>
-                <div className="grid grid-cols-2 relative gap-2 border border-dashed p-2 rounded-xl my-2  ">
-                  
+                <div className="grid grid-cols-2 relative gap-2 border border-dashed p-2 pb-10 rounded-xl my-2  ">
                   <BaseInputRepeater
                     id=""
                     label={`${t("question")}`}
@@ -35,12 +35,11 @@ function FrequentlyQuestions() {
                       )
                     }
                   />
-                  <BaseInputRepeater
+                  <TextAreaField
                     id=""
                     label={`${t("answer")}`}
                     name={`frequently_questions[${index}][answer]`}
                     placeholder={`${t("answer")}`}
-                    type="text"
                     value={item?.answer}
                     onChange={(e) =>
                       setFieldValue(
@@ -66,7 +65,7 @@ function FrequentlyQuestions() {
             ))}
             <button
               type="button"
-              className="bg-red-500 text-white rounded-md p-2 w-8 h-8 flex items-center justify-center absolute bottom-[-40px] ltr:right-[10px] "
+              className="bg-red-500 text-white rounded-md p-2  w-8 h-8 flex items-center justify-center absolute bottom-[5px] ltr:right-[10px] "
               onClick={() => {
                 push({
                   client_category_id: "",

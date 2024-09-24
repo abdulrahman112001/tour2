@@ -4,6 +4,7 @@ import BaseInputRepeater from "../../../../molecules/formik-fields/BaseInputRepe
 import { SvgDelete } from "../../../../atoms/icons/SvgDelete";
 import SelectPlaces from "../../../../molecules/Select/SelectPlcaes.";
 import SelectCities from "../../../../molecules/Select/SelectCities";
+import { TextAreaField } from "../../../../molecules";
 
 function TourItineraries() {
   const { values, setFieldValue, errors } = useFormikContext<any>();
@@ -55,7 +56,7 @@ function TourItineraries() {
                           )
                         }
                       />
-                      <BaseInputRepeater
+                      <TextAreaField
                         id=""
                         label={`${t("description")}`}
                         name={`tour_itineraries[${index}][description]`}
@@ -148,7 +149,7 @@ function TourItineraries() {
             ))}
             <button
               type="button"
-              className="bg-red-500 text-white rounded-md p-2 w-8 h-8 flex items-center justify-center absolute bottom-[-40px] ltr:right-[10px] "
+              className="bg-red-500 text-white rounded-md p-2 w-8 h-8 flex items-center justify-center absolute bottom-[5px] ltr:right-[10px] "
               onClick={() => {
                 push({
                   client_category_id: "",

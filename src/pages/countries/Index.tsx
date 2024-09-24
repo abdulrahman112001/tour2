@@ -10,7 +10,7 @@ export const Countries = ({ title }: Countries_TP) => {
       <Helmet>
         <title>{title}</title>
       </Helmet>
-      <Main/>
+      <Main />
     </>
   );
 };

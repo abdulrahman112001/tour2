@@ -32,70 +32,86 @@ function StepTowTour() {
       }}
     >
       <div className="grid grid-cols-3 gap-2">
-        <div className="col-span-3">
-          <Checkbox
-            name="is_best_deal"
-            label="deal"
-            checked={values?.is_best_deal == 1}
-            onChange={() => handleCheckboxChange("is_best_deal")}
+        {/* Ensure the first div spans all three columns */}
+        <div className="col-span-3 border border-gray-300 p-3 rounded-md">
+          <div className="col-span-3">
+            <Checkbox
+              name="is_best_deal"
+              label="deal"
+              checked={values?.is_best_deal == 1}
+              onChange={() => handleCheckboxChange("is_best_deal")}
+            />
+          </div>
+
+          <BaseInputField
+            name="title"
+            type="text"
+            label="title"
+            placeholder="Title"
           />
+
+          <div className="col-span-3">
+            <CKeditor
+              label="Description"
+              name="description"
+              placeholder="Description"
+            />
+          </div>
+
+          {/* Create a 2-column grid for the next set of inputs */}
+          <div className="grid grid-cols-2 gap-4">
+            <SelectCategory
+              name="category_id"
+              label="category"
+              placeholder="category"
+            />
+
+            <BaseInputField
+              name="duration"
+              type="num"
+              label={
+                values?.type == "tour_package"
+                  ? "duration (Days)"
+                  : "duration (Hours)"
+              }
+              placeholder="Duration"
+            />
+
+            <SelectCreateTags label="Tags" name="tags" />
+
+            <BaseInputField
+              name="age_range"
+              type="text"
+              label="Age Range"
+              id=""
+              placeholder="Age Range"
+            />
+
+            <BaseInputField
+              name="run"
+              type="text"
+              label="Run"
+              id=""
+              placeholder="Run"
+            />
+          </div>
+
+          {values?.type == "excursion" && (
+            <SelectCities
+              name={`tour_itineraries[0][city_id]`}
+              label="City"
+              placeholder="Choose city"
+              with_places={true}
+              onChange={(value) => handleCityChange(value)}
+            />
+          )}
         </div>
-        <BaseInputField
-          name="title"
-          type="text"
-          label="title"
-          placeholder="Title"
-        />
 
-        <BaseInputField
-          name="duration"
-          type="num"
-          label={
-            values?.type == "tour_package"
-              ? "duration (Days)"
-              : "duration (Hours)"
-          }
-          placeholder="Duration"
-        />
-        <SelectCategory
-          name="category_id"
-          label="category"
-          placeholder="category"
-        />
-
-        <SelectCreateTags label="Tags" name="tags" />
-        <BaseInputField name="age_range" type="text" label="Age Range" id="" />
-        <BaseInputField name="run" type="text" label="Run" id="" />
-
-        {/* <div className="col-span-3">
-          <TextAreaField
-            id="description"
-            label="description"
-            name="description"
-            placeholder="Description"
-            rows={5}
-          />
-        </div> */}
-         {values?.type == "excursion" && (
-          <SelectCities
-            name={`tour_itineraries[0][city_id]`}
-            label="City"
-            placeholder="Choose city"
-            with_places={true}
-            onChange={(value) => handleCityChange(value)}
-          />
-        )}
-        <div className="col-span-3">
-          <CKeditor
-            label="Description"
-            name="description"
-            placeholder="Description"
-          />
-        </div>
-        <div className="col-span-3 ">
+        <div className="col-span-3 border border-gray-300 p-3 rounded-md mt-2 ">
           <TourItineraries />
         </div>
-        <div className="col-span-2 ">
+
+        <div className="col-span-2 border border-gray-300 p-3 rounded-md">
           <FrequentlyQuestions />
         </div>
       </div>

@@ -25,9 +25,20 @@ export const generateColumns = (
     {
       header: `${t("name")}`,
       accessorKey: "name",
-      cell: (info) => info.renderValue(),
+      cell: (info) => (
+        <div
+          className="cursor-pointer text-blue-600"
+          onClick={() => {
+            // Set the selected row data for editing and open the modal
+            setMainData(info?.row?.original);
+            setIsModalOpen(true);
+          }}
+        >
+          {/* Render the name as clickable text */}
+          <span>{info.renderValue()}</span>
+        </div>
+      ),
     },
-
     {
       header: `${t("latitude")}`,
       accessorKey: "latitude",

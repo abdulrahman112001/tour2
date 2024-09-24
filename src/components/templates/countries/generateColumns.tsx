@@ -8,13 +8,13 @@ import UpdateIcon from "../../molecules/UpdateIcon";
 
 type RefetchFunction = () => void;
 type setMainDataFunction = React.Dispatch<React.SetStateAction<boolean>>;
-type SetCountryDataFunction = React.Dispatch<React.SetStateAction<any>>; // Adjust 'any' to your specific type
+type SetCountryDataFunction = React.Dispatch<React.SetStateAction<any>>;
 
 export const generateColumns = (
   page: number,
   refetch: RefetchFunction,
   setMainData: setMainDataFunction,
-  setIsModalOpen:any
+  setIsModalOpen: any
 ): ColumnDef<any>[] => {
   return [
     {
@@ -25,7 +25,19 @@ export const generateColumns = (
     {
       header: `${t("name")}`,
       accessorKey: "name",
-      cell: (info) => info.renderValue(),
+      cell: (info) => (
+        <div
+          className="cursor-pointer text-blue-600"
+          onClick={() => {
+            // Set the selected row data for editing and open the modal
+            setMainData(info?.row?.original);
+            setIsModalOpen(true);
+          }}
+        >
+          {/* Render the name as clickable text */}
+          <span>{info.renderValue()}</span>
+        </div>
+      ),
     },
     {
       header: `${t("currency")}`,
