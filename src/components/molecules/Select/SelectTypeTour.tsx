@@ -11,6 +11,7 @@ type SelectTypeTour_tp = {
   labelProps?: React.LabelHTMLAttributes<HTMLLabelElement>;
   labelStyle?: string;
   required?: boolean;
+  value?:string
 };
 
 export default function SelectTypeTour({

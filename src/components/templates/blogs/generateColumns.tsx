@@ -61,22 +61,25 @@ export const generateColumns = (
       cell: (info) => (
         <div className="flex justify-center">
           <DropDown>
-            <div
-              className="flex items-center gap-1 text-[#70707e] p-1"
-              onClick={() => {
-                setModel_id(info.row.original?.id);
-                setIsModalSeoOpen(true);
-              }}
-            >
-              <AddIcon className="text-[18px] text-[#B5B5C3]" />
-              <span>Add</span>
-            </div>
-            <UpdateIcon
-              refetch={refetch}
-              setModel={setIsModalSeoOpen}
-              info={info}
-              setData={setMainData}
-            />
+            {info.row.original?.seo ? (
+              <UpdateIcon
+                refetch={refetch}
+                setModel={setIsModalSeoOpen}
+                info={info}
+                setData={setMainData}
+              />
+            ) : (
+              <div
+                className="flex items-center gap-1 text-[#70707e] p-1"
+                onClick={() => {
+                  setModel_id(info.row.original?.id);
+                  setIsModalSeoOpen(true);
+                }}
+              >
+                <AddIcon className="text-[18px] text-[#B5B5C3]" />
+                <span>Add</span>
+              </div>
+            )}
 
             {/* <DeleteMain refetch={refetch} info={info} /> */}
           </DropDown>

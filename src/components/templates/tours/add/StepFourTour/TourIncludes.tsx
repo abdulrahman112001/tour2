@@ -53,13 +53,15 @@ function TourIncludes() {
                   <SelectTypeTour
                   name={`tour_includes[${index}][status]`}
                   label="Type"
+                  value={item?.status}
+
                   
                   />
 
                   {values?.tour_includes?.length > 1 && (
                     <button
                       type="button"
-                      className=" absolute ltr:right-[-25px]  top-[10px]"
+                      className=" absolute ltr:right-[-0px]  top-[10px]"
                       onClick={() => {
                         remove(index);
                       }}

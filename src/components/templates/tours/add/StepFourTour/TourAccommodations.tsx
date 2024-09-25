@@ -40,16 +40,16 @@ function TourAccommodations() {
                     name={`tour_prices[${index}][from_month]`}
                     key={""}
                     label="From month"
+                    value={item?.from_month}
                   />
                   <SelectMonth
                     name={`tour_prices[${index}][to_month]`}
                     key={""}
                     label="To month"
+                    value={item?.to_month}
                   />
                   <div className="relative">
-                    <FieldArray
-                      name={`tour_prices[${index}][prices]`}
-                    >
+                    <FieldArray name={`tour_prices[${index}][prices]`}>
                       {({ push: pushOption, remove: removeOption }) => (
                         <div className="col-span-2 mt-4">
                           <p className="font-semibold">Price</p>
@@ -57,7 +57,7 @@ function TourAccommodations() {
                             (option: any, optionIndex: any) => (
                               <div
                                 key={optionIndex}
-                                className="grid grid-cols-2 gap-2 border p-2 rounded-xl mb-2"
+                                className="grid grid-cols-2 gap-2 border p-2 rounded-xl mb-2 relative"
                               >
                                 <BaseInputRepeater
                                   id=""
@@ -113,59 +113,7 @@ function TourAccommodations() {
                       )}
                     </FieldArray>
                   </div>
-                  {/* <BaseInputRepeater
-                    id=""
-                    label={`${t("description")}`}
-                    name={`tour_prices[${index}][description]`}
-                    placeholder={`${t("description")}`}
-                    type="text"
-                    value={item?.description}
-                    onChange={(e) =>
-                      setFieldValue(
-                        `tour_prices[${index}][description]`,
-                        e.target.value
-                      )
-                    }
-                  /> */}
-                  {/* <div className="">
-                      <div className="flex gap-4 rtl:text-right mantine-radio-style flex-col w-11/12">
-                        <label>{t("type")}</label>
-                        <div className="flex gap-5 mantine-radio-style">
-                          <Radio
-                            checked={item?.type === 'private'}
-                            label={`${t("Private")}`}
-                            id="status"
-                            name={`tour_prices[${index}].type`}
-                            onChange={() =>
-                              setFieldValue(`tour_prices[${index}].type`, 'private')
-                            }
-                          />
-                          <Radio
-                            label={`${t("Shared")}`}
-                            checked={item?.type === 'shared'}
-                            id="status"
-                            name={`tour_prices[${index}].type`}
-                            onChange={() =>
-                              setFieldValue(`tour_prices[${index}].type`, 'shared')
-                            }
-                          />
-                        </div>
-                      </div>
-                    </div>
-                  <BaseInputRepeater
-                    id=""
-                    label={`${t("price")}`}
-                    name={`tour_prices[${index}][price]`}
-                    placeholder={`${t("price")}`}
-                    type="text"
-                    value={item?.price}
-                    onChange={(e) =>
-                      setFieldValue(
-                        `tour_prices[${index}][price]`,
-                        e.target.value
-                      )
-                    }
-                  /> */}
+                
 
                   {values?.tour_prices?.length > 1 && (
                     <button
@@ -186,8 +134,10 @@ function TourAccommodations() {
               className="bg-red-500 text-white rounded-md p-2 w-8 h-8 flex items-center justify-center absolute bottom-[-40px] ltr:right-[10px] "
               onClick={() => {
                 push({
-                  client_category_id: "",
-                  commission: "",
+                  title: "",
+                  from_month: "",
+                  to_month: "",
+                  // price: "",
                 });
               }}
             >

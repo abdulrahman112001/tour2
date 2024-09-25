@@ -30,7 +30,7 @@ function Add({ refetch, update }: AddCurrency_TP) {
         url: item.url,
         id: item?.id,
       })) || [],
-    panar_image: [{url:update?.panar_image}],
+    panar_image: [{url:update?.panar_image?.url , id: update?.panar_image?.id}],
   };
   const { mutate, isLoading } = useMutate({
     mutationKey: ["coutnries"],

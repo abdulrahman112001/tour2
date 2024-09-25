@@ -98,7 +98,7 @@ function MainData(update: any) {
           {/* <div className="cursor-pointer" onClick={() => setOpen(true)}>
             upload image
           </div> */}
-          <UploadMedia name="images" isMulti label="images" />
+          {/* <UploadMedia name="images" isMulti label="images" /> */}
           <UploadMedia name="panar_image" label="panner image" />
 
           {/* <div className="col-span-12 md:col-span-1">

@@ -3,6 +3,9 @@ import { LuExternalLink } from "react-icons/lu";
 import DeleteMain from "./DeleteMain";
 import { MdCancel } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
+import DropDown from "../../molecules/DropDown/DropDown";
+import UpdateIcon from "../../molecules/UpdateIcon";
+import { AddIcon } from "../../atoms/icons";
 
 type CardTour_TP = {
   item: {
@@ -11,16 +14,25 @@ type CardTour_TP = {
     id: string;
   };
   refetch: () => void;
+  setIsModalSeoOpen: any;
+  setModel_id: any;
+  setMainData: any;
 };
 
-function CardTour({ item, refetch }: CardTour_TP) {
+function CardTour({
+  item,
+  refetch,
+  setIsModalSeoOpen,
+  setModel_id,
+  setMainData,
+}: CardTour_TP) {
   const navigate = useNavigate();
   return (
     <div className="flex justify-between items-center">
       <div className="flex gap-5 p-5 ">
         <div>
           <img
-            src={item?.main_image}
+            src={item?.main_image?.url}
             alt=""
             style={{
               width: "160px",
@@ -52,7 +64,7 @@ function CardTour({ item, refetch }: CardTour_TP) {
           </div>
         </div>
       </div>
-      <div className="flex flex-col gap-3">
+      <div className="flex flex-col gap-3 mb-3">
         <button
           className="bg-[#186b6d] p-3 rounded-md px-10 text-white w-full "
           onClick={() => navigate(`/tours/edit/${item?.id}`)}
@@ -60,6 +72,36 @@ function CardTour({ item, refetch }: CardTour_TP) {
           Improve
         </button>
         <DeleteMain Main_id={item?.id} refetch={refetch} />
+        <div className="cursor-pointer">
+          {item?.seo ? (
+            // <UpdateIcon
+            //   refetch={refetch}
+            //   setModel={setIsModalSeoOpen}
+            //   info={item}
+            //   setData={setMainData}
+            // />
+            <div
+            className="bg-mainGray p-3 rounded-md px-10 text-white w-full"
+            onClick={() => {
+              setModel_id(item?.id);
+              setIsModalSeoOpen(true);
+              setMainData(item)
+            }}
+          >
+            Edit Seo
+          </div>
+          ) : (
+            <div
+              className="bg-mainGray p-3 rounded-md px-10 text-white w-full"
+              onClick={() => {
+                setModel_id(item?.id);
+                setIsModalSeoOpen(true);
+              }}
+            >
+              Add Seo
+            </div>
+          )}
+        </div>
       </div>
     </div>
   );

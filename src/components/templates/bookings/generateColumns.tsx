@@ -8,6 +8,7 @@ import UpdateIcon from "../../molecules/UpdateIcon";
 import { Add } from "../../atoms/icons/Add";
 import { AddIcon } from "../../atoms/icons";
 import MenuChangeStatus from "../../molecules/MenuChangeStatus";
+import MenuAssignSells from "../../molecules/MenuAssignSells";
 
 type RefetchFunction = () => void;
 type setMainDataFunction = React.Dispatch<React.SetStateAction<boolean>>;
@@ -41,6 +42,16 @@ export const generateColumns = (
       header: `${t("phone")}`,
       accessorKey: "phone",
       cell: (info) => info.renderValue(),
+    },
+    {
+      header: `${t("phone")}`,
+      accessorKey: "phone",
+      cell: (info) => <div>
+        <MenuAssignSells
+         bookingId={info?.row?.original?.id}
+         refetch={refetch}
+        />
+      </div>,
     },
     {
       header: `${t("status")}`,
