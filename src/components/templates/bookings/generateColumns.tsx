@@ -44,14 +44,17 @@ export const generateColumns = (
       cell: (info) => info.renderValue(),
     },
     {
-      header: `${t("phone")}`,
-      accessorKey: "phone",
-      cell: (info) => <div>
-        <MenuAssignSells
-         bookingId={info?.row?.original?.id}
-         refetch={refetch}
-        />
-      </div>,
+      header: `${t("Sells")}`,
+      accessorKey: "Sells",
+      cell: (info) => (
+        <div>
+          <MenuAssignSells
+            bookingId={info?.row?.original?.id}
+            refetch={refetch}
+            status={info?.row?.original?.status}
+          />
+        </div>
+      ),
     },
     {
       header: `${t("status")}`,

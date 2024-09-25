@@ -87,20 +87,20 @@ function Main() {
         <div>
           <div className="grid grid-cols-9 gap-4">
             {AllMedia?.data?.map((item) => (
-              <CardFolder item={item}   refetch={refetch}/>
+              <CardFolder item={item} refetch={refetch} />
             ))}
           </div>
           {/* <CardMedia refetch={refetch} /> */}
 
-          <div className="flex justify-end mt-3">
+          {/* <div className="flex justify-end mt-3">
             <Paginate
-              pagesCount={AllMedia?.data?.lastPage}
+              pagesCount={AllMedia?.pagination?.last_page}
               previousLabel={<PreviousPage />}
               nextLabel={<NextPaginationIc />}
               onPageChange={handlePageChange}
               initialPage={page}
             />
-          </div>
+          </div> */}
         </div>
       </LayoutMedia>
     </div>

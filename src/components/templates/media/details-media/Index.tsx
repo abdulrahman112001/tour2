@@ -9,7 +9,7 @@ import { FaFolderOpen } from "react-icons/fa";
 
 function DetailsMedia({ id }) {
   const queryParams = {
-    // page: page,
+     page: page,
     // paginate: pagePagination,
     // per_page: pageSize,
   };

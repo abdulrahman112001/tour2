@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Menu, Button, rem } from "@mantine/core";
 import {
   IconExternalLink,
@@ -86,6 +86,10 @@ function MenuChangeStatus({ initialStatus, refetch, bookingId , setOpen }) {
         return true;
     }
   };
+  useEffect(() => {
+    setStatus(initialStatus)
+  }, [initialStatus])
+  
 
   return (
     <div>

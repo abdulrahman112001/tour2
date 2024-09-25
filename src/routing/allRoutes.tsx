@@ -27,6 +27,7 @@ import { Files } from "../pages/bookings/files/Index";
 import { DetailsFile } from "../pages/bookings/files/detailsFile/Index";
 import { Media } from "../pages/media/Index";
 import DetailsFolder from "../pages/media/detailsFolder/Index";
+import { Users } from "../pages/users/Index";
 
 export const AllRoutesProvider = () => {
   const userString = localStorage.getItem("user");
@@ -46,6 +47,8 @@ export const AllRoutesProvider = () => {
         />
         <Route path="/cities" element={<Cities title={t("Cities")} />} />
         <Route path="/places" element={<Places title={t("Places")} />} />
+        <Route path="/users" element={<Users title={t("Users")} />} />
+
         <Route
           path="/categories"
           element={<Categories title={t("Categories")} />}

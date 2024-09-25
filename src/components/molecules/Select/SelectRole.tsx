@@ -5,46 +5,33 @@ import { useFormikContext } from "formik";
 import { OptionType } from "../../../utils/helpers";
 import { Label } from "../../atoms";
 
-type SelectCities_tp = {
+type SelectRoles_tp = {
   name: string;
   label?: string;
   placeholder?: string;
   labelProps?: React.LabelHTMLAttributes<HTMLLabelElement>;
   labelStyle?: string;
   required?: boolean;
-  with_places?: boolean;
 };
-export default function SelectCities({
+export default function SelectRoles({
   name,
   label,
   labelStyle = "",
   labelProps = {},
   required,
-  with_places,
-  value,
-  onChange
-}: SelectCities_tp) {
-  console.log("🚀 ~ value:", value)
-  const queryParams = {
-     page: page,
-    with_places: with_places ? true : false,
-    page: 0,
-  };
-  const searchParams = new URLSearchParams(queryParams as any);
-  const endpoint = `cities?${searchParams.toString()}`;
+}: SelectRoles_tp) {
   const { data, isLoading, failureReason } = useFetch<any>({
-    queryKey: [endpoint],
-    endpoint: endpoint,
+    queryKey: ["roles"],
+    endpoint: `roles`,
   });
   const { values, setFieldValue } = useFormikContext<any>();
 
   const dataOptions = data?.data?.map((item: any) => ({
     value: item.id,
     label: item.name,
-    places: item.places,
   }));
   const selectedCountry = dataOptions?.find(
-    (option: OptionType) => option?.value == (value || values[name])
+    (option: OptionType) => option?.value == values[name]
   );
   return (
     <div className="mt-2">
@@ -57,24 +44,16 @@ export default function SelectCities({
         {label}
       </Label>
       <Select
-        placeholder={`${t("choose city")}`}
+        placeholder={`${t("choose Role")}`}
         // label={label}
         id="optionStatus"
         name={name}
-        // isMulti
         value={selectedCountry}
         isDisabled={!isLoading && !!failureReason}
         loadingPlaceholder={`${t("loading")}`}
         loading={isLoading}
         options={dataOptions}
-        onChange={
-          with_places
-            ? (option: OptionType) => {
-                setFieldValue(name, option?.value);
-                setFieldValue("places", option?.places);
-              }
-            :onChange ? onChange  :(option: OptionType) => { setFieldValue(name, option?.value)}
-        }
+        onChange={(option: OptionType) => setFieldValue(name, option?.label)}
       />
     </div>
   );

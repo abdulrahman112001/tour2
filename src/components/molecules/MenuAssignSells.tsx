@@ -4,7 +4,7 @@ import { useFetch, useMutate } from "../../hooks";
 import { notify } from "../../utils/toast";
 import { Spinner } from "../atoms";
 
-function MenuAssignSells({ refetch, bookingId }) {
+function MenuAssignSells({ refetch, bookingId, status }) {
   const { data: allUsers } = useFetch({
     queryKey: [`users`],
     endpoint: `users`,
@@ -26,16 +26,26 @@ function MenuAssignSells({ refetch, bookingId }) {
     },
   });
 
-  console.log("🚀 ~ MenuAssignSells ~ allUsers:", allUsers);
   return (
     <div>
       <Menu width={200} shadow="md">
         <Menu.Target>
-          <Button className="bg-main">
-            {
-                isLoading ? <Spinner/> :"Assign sells"
+          <Button
+            className="bg-main"
+            disabled={
+              status !== "pending" &&
+              status !== "lead_in" &&
+              status !== "contact"
             }
-            </Button>
+          >
+            {isLoading ? (
+              <Spinner />
+            ) : status == "lead_in" || status == "contact"  ? (
+              "Re Assign Sells"
+            ) : (
+              "Assign sells"
+            )}
+          </Button>
         </Menu.Target>
 
         <Menu.Dropdown>
