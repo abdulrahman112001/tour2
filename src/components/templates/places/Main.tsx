@@ -22,7 +22,7 @@ function Main() {
   const isRTL = useIsRTL();
 
   const queryParams = {
-    // page: page,
+     page: page,
     // paginate: pagePagination,
     // per_page: pageSize,
   };
@@ -82,7 +82,7 @@ function Main() {
         />
         <div className="flex justify-end mt-3">
           <Paginate
-            pagesCount={data?.data?.lastPage}
+            pagesCount={data?.pagination?.last_page}
             previousLabel={<PreviousPage />}
             nextLabel={<NextPaginationIc />}
             onPageChange={handlePageChange}

@@ -11,15 +11,9 @@ import { Table } from "../../organisms/tantable/Table";
 import Paginate from "../../molecules/table/Paginate";
 import PreviousPage from "../../atoms/icons/PreviousPage";
 import NextPaginationIc from "../../atoms/icons/NextPaginationIc";
-import CardTour from "../tours/CardTour";
-import { useNavigate } from "react-router-dom";
-import AddSeo from "../../molecules/seo/AddSeo";
 
 function Main() {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [isModalSeoOpen, setIsModalSeoOpen] = useState(false);
-  const [model_id, setModel_id] = useState("");
-
   const [page, setPage] = useState(0);
   const [pagePagination, setPagePagination] = useState(pagePaginate);
   const [pageSize, setPageSize] = useState(10);
@@ -33,7 +27,7 @@ function Main() {
     // per_page: pageSize,
   };
   const searchParams = new URLSearchParams(queryParams as any);
-  const endpoint = `blogs?${searchParams.toString()}`;
+  const endpoint = `users?${searchParams.toString()}`;
   const { data, refetch, isSuccess, isFetching, isLoading } = useFetch({
     endpoint: endpoint,
     queryKey: [endpoint],
@@ -43,15 +37,7 @@ function Main() {
     enabled: !!page,
   });
   const columns = useMemo(
-    () =>
-      generateColumns(
-        page,
-        refetch,
-        setMainData,
-        setIsModalOpen,
-        setIsModalSeoOpen,
-        setModel_id
-      ),
+    () => generateColumns(page, refetch, setMainData, setIsModalOpen),
     [page, isRTL]
   );
   const handlePageChange = (selectedPage: number) => {
@@ -67,7 +53,7 @@ function Main() {
                 setIsModalOpen(true);
                 setMainData({});
               }}
-              addLabel={`${t("Create")}`}
+              addLabel={`${t("Add")}`}
             />
           </div>
         </div>
@@ -77,21 +63,7 @@ function Main() {
             setIsModalOpen(false);
           }}
         >
-          <Add refetch={refetch} update={MainData} data={data?.data?.data} />
-        </ModalTemplate>
-        <ModalTemplate
-          isOpen={isModalSeoOpen}
-          onClose={() => {
-            setIsModalSeoOpen(false);
-          }}
-        >
-          <AddSeo
-            refetch={refetch}
-            update={MainData}
-            model_type="blog"
-            model_id={model_id}
-            setIsModalSeoOpen={setIsModalSeoOpen}
-          />
+          <Add refetch={refetch} update={MainData} />
         </ModalTemplate>
 
         <Table

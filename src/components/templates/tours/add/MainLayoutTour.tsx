@@ -72,11 +72,11 @@ function MainLayoutTour({ editIdTour }: MainLayoutTour_TP) {
       </Stepper>
 
       <Group justify="end" mt="">
-        {active > 0 && (
+        {/* {active > 0 && (
           <Button className="bg-main" onClick={prevStep}>
             Back
           </Button>
-        )}
+        )} */}
         <Button
           variant="default"
           loading={LoadingPost}
@@ -108,10 +108,9 @@ function MainLayoutTour({ editIdTour }: MainLayoutTour_TP) {
                 })
               : active == 2
               ? addTour({
-                images: values?.images?.map((item)=>item?.id),
-                pdf_file: values?.pdf_file,
+                  images: values?.images?.map((item) => item?.id),
+                  pdf_file: values?.pdf_file,
                   main_image: values?.main_image[0]?.id,
-
                   tour_id: values?.tour_id,
                   step: 3,
                 })

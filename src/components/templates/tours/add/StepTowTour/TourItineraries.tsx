@@ -33,14 +33,14 @@ function TourItineraries() {
                         label="Cities"
                         placeholder="Chose cities"
                         with_places={true}
-                        value={item?.city?.id}
+                        value={item?.city_id}
                       />
                       <SelectPlaces
                         name={`tour_itineraries[${index}][place_id]`}
                         label="Places"
                         placeholder="Chose places"
                         with_places={true}
-                        value={item?.place?.id}
+                        value={item?.place_id}
                       />
                       <BaseInputRepeater
                         id=""
@@ -152,8 +152,10 @@ function TourItineraries() {
               className="bg-red-500 text-white rounded-md p-2 w-8 h-8 flex items-center justify-center absolute bottom-[5px] ltr:right-[10px] "
               onClick={() => {
                 push({
-                  client_category_id: "",
-                  commission: "",
+                  title: "",
+                  description: "",
+                  city_id: "",
+                  place_id: "",
                 });
               }}
             >

@@ -38,6 +38,28 @@ export const linksData = [
     link: "/",
   },
   {
+    icon: IoSettingsOutline,
+    label: "Users",
+    links: [
+      // {
+      //   icon: IoCallOutline,
+      //   label: "Permission",
+      //   link: "/setting-contact",
+      // },
+      // {
+      //   icon: IoInformationCircleOutline,
+      //   label: "Roles",
+      //   link: "/setting-about",
+      // },
+      {
+        icon: IoDocumentTextOutline,
+        label: "Users",
+        link: "/users",
+      },
+     
+    ],
+  },
+  {
     icon: FaRegFlag,
     label: "Countries",
     link: "/countries",

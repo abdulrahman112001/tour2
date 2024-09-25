@@ -60,7 +60,14 @@ function Main() {
       </div>
       <div>
         {AllTours?.data?.map((item) => (
-          <CardTour item={item} refetch={refetch} />
+          <CardTour
+            item={item}
+            refetch={refetch}
+            setIsModalSeoOpen={setIsModalSeoOpen}
+            isModalSeoOpen={isModalSeoOpen}
+            setMainData={setMainData}
+            setModel_id={setModel_id}
+          />
         ))}
         <ModalTemplate
           isOpen={isModalSeoOpen}
@@ -71,14 +78,14 @@ function Main() {
           <AddSeo
             refetch={refetch}
             update={MainData}
-            model_type="blog"
+            model_type="tour"
             model_id={model_id}
             setIsModalSeoOpen={setIsModalSeoOpen}
           />
         </ModalTemplate>
         <div className="flex justify-end mt-3">
           <Paginate
-            pagesCount={AllTours?.data?.lastPage}
+            pagesCount={AllTours?.pagination?.last_page}
             previousLabel={<PreviousPage />}
             nextLabel={<NextPaginationIc />}
             onPageChange={handlePageChange}

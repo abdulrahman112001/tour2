@@ -11,6 +11,7 @@ type SelectMonth_tp = {
   labelProps?: React.LabelHTMLAttributes<HTMLLabelElement>;
   labelStyle?: string;
   required?: boolean;
+  value: string;
 };
 
 export default function SelectMonth({
@@ -19,15 +20,15 @@ export default function SelectMonth({
   labelStyle = "",
   labelProps = {},
   required,
+  value,
 }: SelectMonth_tp) {
   const { values, setFieldValue } = useFormikContext<any>();
 
-  // List of months in English for both label and value
   const monthsOptions: OptionType[] = [
-    { label: "January", value: "January" },
+    { label: "January", value: "Jan" },
     { label: "February", value: "February" },
     { label: "March", value: "March" },
-    { label: "April", value: "April" },
+    { label: "April", value: "Apr" },
     { label: "May", value: "May" },
     { label: "June", value: "June" },
     { label: "July", value: "July" },
@@ -39,7 +40,7 @@ export default function SelectMonth({
   ];
 
   const selectedMonth = monthsOptions.find(
-    (option: OptionType) => option?.value === values[name]
+    (option: OptionType) => option?.value === (values[name] || value)
   );
 
   return (

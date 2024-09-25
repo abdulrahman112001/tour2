@@ -15,28 +15,19 @@ import MainData from "./MainData";
 type AddCurrency_TP = {
   refetch: () => void;
   update: any;
-  data: any;
+
 };
 function Add({ refetch, update }: AddCurrency_TP) {
   const initialValues: initialValue_Tp = {
     name: update?.name || "",
-    currency: update?.currency || "",
-    iso2: update?.iso2 || "",
-    timezones: update?.timezones || "",
-    latitude: update?.latitude || "",
-    longitude: update?.longitude || "",
-    images:
-      update?.images?.map((item) => ({
-        url: item.url,
-        id: item?.id,
-      })) || [],
-    panar_image: [{url:update?.panar_image?.url , id: update?.panar_image?.id}],
+    email: update?.email || "",
+    password: update?.password || "",
+    role: update?.role || "",
   };
   const { mutate, isLoading } = useMutate({
-    mutationKey: ["coutnries"],
-    endpoint: `coutnries`,
+    mutationKey: ["users"],
+    endpoint: `users`,
     onSuccess: () => {
-      refetch();
       notify("success");
     },
     onError: (err) => {
@@ -45,8 +36,8 @@ function Add({ refetch, update }: AddCurrency_TP) {
     formData: true,
   });
   const { mutate: PostUpdate, isLoading: updateLoading } = useMutate({
-    mutationKey: ["coutnries"],
-    endpoint: `coutnries/${update?.id}`,
+    mutationKey: ["users"],
+    endpoint: `users/${update?.id}`,
     onSuccess: () => {
       refetch();
       notify("success");
@@ -59,7 +50,7 @@ function Add({ refetch, update }: AddCurrency_TP) {
 
   const handleSubmit = (values: AllCurrencyTable_TP) => {
     const submissionData = { ...values };
-    if (Object.entries(update).length) {
+    if (Object.entries(update || {}).length) {
       PostUpdate({ ...submissionData, _method: "PUT" });
     } else {
       mutate(submissionData);
@@ -72,10 +63,7 @@ function Add({ refetch, update }: AddCurrency_TP) {
         initialValues={initialValues}
         // validationSchema={validationSchema}
         onSubmit={(values: any) => {
-          const panar_image = values?.panar_image[0]?.id;
-          const images = values?.images?.map((item) => item?.id);
-
-          handleSubmit({ ...values, panar_image: panar_image, images: images });
+          handleSubmit({ ...values });
         }}
       >
         <Form>

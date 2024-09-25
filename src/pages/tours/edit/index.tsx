@@ -42,6 +42,8 @@ function EditTour() {
       {
         title: "",
         description: "",
+        city_id:"",
+        place_id:""
       },
     ],
     tour_availabilities: DetailsTour?.data?.tour_availabilities || [
@@ -80,11 +82,13 @@ function EditTour() {
     ],
     images:
       DetailsTour?.data?.images?.map((item) => ({
-        url: item,
+        url: item?.url,
+        id: item?.id,
       })) || [],
     main_image: [
       {
-        url: DetailsTour?.data?.main_image,
+        url: DetailsTour?.data?.main_image?.url,
+        id: DetailsTour?.data?.main_image?.id,
       },
     ],
     pdf_file: [],
