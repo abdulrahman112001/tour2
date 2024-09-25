@@ -30,15 +30,23 @@ function CardTour({ item, refetch }: CardTour_TP) {
         </div>
         <div>
           <p className="font-bold">{item?.title}</p>
-          <div className="flex  gap-3">
+          <div className="flex gap-3">
             <p className="text-[#6e7277] text-[14px]">
               Product code: {item?.id}
             </p>
             <p className="flex items-center gap-1 cursor-pointer text-[#186b6d] text-[14px]">
-              View on Site
-              <LuExternalLink className="text-[#186b6d] text-lg" />
+              <a
+                href={`https://sarayelnile.vercel.app/top-packages/${item?.id}`}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <div className="flex gap-x-2">
+                  View on Site
+                  <LuExternalLink className="text-[#186b6d] text-lg" />
+                </div>
+              </a>
             </p>
-            {item?.is_complete_data == 1 ? (
+            {item?.is_complete_data === 1 ? (
               <p className="flex items-center gap-2">
                 <FaCheckCircle className="text-[#186b6d]" />
                 Good
@@ -54,7 +62,7 @@ function CardTour({ item, refetch }: CardTour_TP) {
       </div>
       <div className="flex flex-col gap-3">
         <button
-          className="bg-[#186b6d] p-3 rounded-md px-10 text-white w-full "
+          className="bg-[#186b6d] p-3 rounded-md px-10 text-white w-full"
           onClick={() => navigate(`/tours/edit/${item?.id}`)}
         >
           Improve
