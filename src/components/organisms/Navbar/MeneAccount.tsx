@@ -18,7 +18,7 @@ function MeneAccount() {
             </Avatar>
           </Button>
         </Menu.Target>
-        <Menu.Dropdown className="ltr:!left-[1086px] !w-[16.25rem] shadow-lg p-0 border-0">
+        <Menu.Dropdown className=" !w-[16.25rem] shadow-lg p-0 border-0">
           <Menu.Item className="font-[600] p-4">{user?.name}</Menu.Item>
           <div className="mt-1">
             <Menu.Item className="hover:bg-[#eceef9] rounded-none">
