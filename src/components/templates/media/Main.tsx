@@ -1,15 +1,7 @@
-import { t } from "i18next";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useFetch } from "../../../hooks";
-import NextPaginationIc from "../../atoms/icons/NextPaginationIc";
-import PreviousPage from "../../atoms/icons/PreviousPage";
-import { AddButton } from "../../molecules/AddButton";
-import { ModalTemplate } from "../../molecules/ModalTemplate";
-import Paginate from "../../molecules/table/Paginate";
-import Add from "./Add";
 import CardFolder from "./CardFolder";
-import AddFolder from "./AddFolder";
 import LayoutMedia from "./LayoutMedia";
 type AllMedia_TP = {
   data: {
@@ -23,6 +15,7 @@ function Main() {
   const [page, setPage] = useState(0);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isModalFolderOpen, setIsModalFolderOpen] = useState(false);
+  const [selectedIds, setSelectedIds] = useState<(number | string)[]>([]);
 
   const [MainData, setMainData] = useState({});
 
@@ -83,24 +76,24 @@ function Main() {
           setIsModalOpen={setIsModalFolderOpen}
         />
       </ModalTemplate> */}
-      <LayoutMedia MainData={MainData} refetch={refetch}>
+      <LayoutMedia
+        MainData={MainData}
+        refetch={refetch}
+        selectedIds={selectedIds}
+        setSelectedIds={setSelectedIds}
+        showDelete
+      >
         <div>
           <div className="grid grid-cols-9 gap-4">
             {AllMedia?.data?.map((item) => (
-              <CardFolder item={item} refetch={refetch} />
+              <CardFolder
+                item={item}
+                refetch={refetch}
+                selectedIds={selectedIds}
+                setSelectedIds={setSelectedIds}
+              />
             ))}
           </div>
-          {/* <CardMedia refetch={refetch} /> */}
-
-          {/* <div className="flex justify-end mt-3">
-            <Paginate
-              pagesCount={AllMedia?.pagination?.last_page}
-              previousLabel={<PreviousPage />}
-              nextLabel={<NextPaginationIc />}
-              onPageChange={handlePageChange}
-              initialPage={page}
-            />
-          </div> */}
         </div>
       </LayoutMedia>
     </div>

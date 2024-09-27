@@ -26,7 +26,6 @@ export default function SelectCities({
 }: SelectCities_tp) {
   console.log("🚀 ~ value:", value)
   const queryParams = {
-     page: page,
     with_places: with_places ? true : false,
     page: 0,
   };

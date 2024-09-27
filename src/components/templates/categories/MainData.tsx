@@ -32,7 +32,7 @@ function MainData(update: any) {
             />
           </div>
           <div className="col-span-2">
-            <UploadMedia name="images" isMulti label="images" />
+            {/* <UploadMedia name="images" isMulti label="images" /> */}
             <UploadMedia name="panar_image" label="panner image" />
           </div>
         </div>

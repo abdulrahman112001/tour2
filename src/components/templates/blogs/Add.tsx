@@ -23,9 +23,12 @@ function Add({ refetch, update }: AddCurrency_TP) {
     title_ar: update?.title_ar || "",
     content_ar: update?.content_ar || "",
     is_active: update?.is_active || "0",
-    image:[{
-      url:update?.image
-    }]
+    // image:[{
+    //   url:update?.image
+    // }]
+    image: update?.image?.url
+    ? [{ url: update?.image?.url, id: update?.image?.id }]
+    : [],
   };
   const { mutate, isLoading } = useMutate({
     mutationKey: ["blogs"],

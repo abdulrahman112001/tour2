@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useFetch } from "../../../../hooks";
 import CardMedia from "../CardMedia";
 import { useParams } from "react-router-dom";
@@ -8,8 +8,10 @@ import DeleteFolder from "../DeleteFolder";
 import { FaFolderOpen } from "react-icons/fa";
 
 function DetailsMedia({ id }) {
+  const [selectedIds, setSelectedIds] = useState<(number | string)[]>([]);
+
   const queryParams = {
-     page: page,
+    //  page: page,
     // paginate: pagePagination,
     // per_page: pageSize,
   };
@@ -26,7 +28,11 @@ function DetailsMedia({ id }) {
     queryKey: [endpoint],
   });
   return (
-    <LayoutMedia refetch={refetch}>
+    <LayoutMedia
+      refetch={refetch}
+      selectedIds={selectedIds}
+      setSelectedIds={setSelectedIds}
+    >
       <div>
         <div className="grid grid-cols-12 gap-1">
           {AllMedia?.data?.content?.data?.map((item) => (
@@ -42,7 +48,12 @@ function DetailsMedia({ id }) {
                   </div>
                 </div>
               ) : (
-                <CardMedia item={item} refetch={refetch} />
+                <CardMedia
+                  item={item}
+                  refetch={refetch}
+                  selectedIds={selectedIds}
+                  setSelectedIds={setSelectedIds}
+                />
               )}
             </div>
           ))}

@@ -1,11 +1,9 @@
 import { t } from "i18next";
-import { Dispatch, SetStateAction, useState } from "react";
+import { useState } from "react";
+import { MdOutlineDeleteOutline } from "react-icons/md";
 import { useMutate } from "../../../hooks";
 import { notify } from "../../../utils/toast";
-import { Delete } from "../../atoms/icons/Delete";
 import showAlert from "../../molecules/ShowAlert";
-import { DeleteIcon } from "../../atoms/icons";
-import { MdOutlineDeleteOutline } from "react-icons/md";
 
 type DeleteMain_TP = {
   refetch: () => void;

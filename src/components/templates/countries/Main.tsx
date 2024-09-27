@@ -43,7 +43,6 @@ function Main() {
   const handlePageChange = (selectedPage: number) => {
     setPage(selectedPage);
   };
-  console.log("🚀 ~ Main ~ data:", data);
   return (
     <div>
       <MainLayout>

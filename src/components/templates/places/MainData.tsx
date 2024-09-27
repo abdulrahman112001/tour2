@@ -58,7 +58,7 @@ function MainData(update: any) {
               required
             />
           </div>
-          <UploadMedia name="images" isMulti label="images" />
+          {/* <UploadMedia name="images" isMulti label="images" /> */}
           <UploadMedia name="panar_image" label="panner image" />
         </div>
       </InnerFormLayout>

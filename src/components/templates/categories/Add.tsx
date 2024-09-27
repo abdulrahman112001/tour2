@@ -22,16 +22,14 @@ function Add({ refetch, update }: AddCurrency_TP) {
     name_ar: update?.name_ar || "",
     name_en: update?.name_ar || "",
     is_active: update?.is_active || "0",
-    images:
-      update?.images?.map((item) => ({
-        url: item.url,
-        id: item?.id,
-      })) || [],
-    panar_image: [
-      {
-        url: update?.panar_image,
-      },
-    ],
+    // images:
+    //   update?.images?.map((item) => ({
+    //     url: item.url,
+    //     id: item?.id,
+    //   })) || [],
+    panar_image: update?.panar_image?.url
+    ? [{ url: update?.panar_image?.url, id: update?.panar_image?.id }]
+    : [],
   };
   const { mutate, isLoading } = useMutate({
     mutationKey: ["categories"],

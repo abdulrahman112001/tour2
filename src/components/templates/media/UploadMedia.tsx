@@ -7,6 +7,7 @@ import DeleteMain from "./DeleteMain";
 import { FormikContext, FormikValues } from "formik";
 import { MdOutlineCloudUpload } from "react-icons/md";
 import { Label } from "../../atoms";
+import LayoutMedia from "./LayoutMedia";
 
 interface UploadMediaProps {
   name: string;
@@ -30,6 +31,10 @@ const UploadMedia: React.FC<UploadMediaProps> = ({
 }) => {
   const { values, setFieldValue } = useContext(FormikContext) as FormikValues;
   const [open, setOpen] = useState(false);
+  const AllIds = values[name]?.map((item) => item?.id);
+  console.log("🚀 ~ AllIds:", AllIds);
+  const [selectedIds, setSelectedIds] = useState(AllIds || []);
+  console.log("🚀 ~ selectedIds:", selectedIds)
 
   const queryParams = {};
   const searchParams = new URLSearchParams(queryParams as any);
@@ -55,6 +60,7 @@ const UploadMedia: React.FC<UploadMediaProps> = ({
           { id: imageId, url: imageUrl },
         ]);
       }
+      handleSelect(imageId);
     } else {
       setFieldValue(name, [{ id: imageId, url: imageUrl }]);
     }
@@ -90,118 +96,151 @@ const UploadMedia: React.FC<UploadMediaProps> = ({
     );
     setFieldValue(name, updatedImages);
   };
-
+  const handleSelect = (id: number | string) => {
+    if (selectedIds.includes(id)) {
+      setSelectedIds((prev) => prev.filter((selectedId) => selectedId !== id));
+    } else {
+      setSelectedIds((prev) => [...prev, id]);
+    }
+  };
   return (
     <div>
       <ModalTemplate isOpen={open} onClose={() => setOpen(false)}>
-        <div className="p-4 w-full h-[80vh] m-2">
-          {values.selectedFolder && (
-            <button
-              className="mb-4 px-4 py-2 bg-blue-500 text-white rounded mx-5"
-              onClick={handleBackClick}
-            >
-              Back
-            </button>
-          )}
-          <div
-            className={`flex flex-col justify-between ${
-              values.selectedFolder ? "h-[68vh]" : "h-[75vh]"
-            } `}
+        <div className="p-4">
+          <LayoutMedia
+            refetch={refetch}
+            selectedIds={selectedIds}
+            setSelectedIds={setSelectedIds}
+            
           >
-            <div className="grid grid-cols-9 gap-4">
-              {!values.selectedFolder &&
-                AllMedia?.data?.map((item: MediaItem) => (
-                  <div key={item?.id} className="relative">
-                    {item?.type === "folder" ? (
-                      <div>
-                        <div
-                          className="cursor-pointer"
-                          onClick={() => handleFolderClick(item?.id)}
-                        >
-                          <FaFolderOpen className="w-full h-28 text-main" />
-                          <p className="text-center">{item?.name}</p>
-                        </div>
-                        <div className="cursor-pointer">
-                          <DeleteFolder file_id={item?.id} refetch={refetch} />
-                        </div>
-                      </div>
-                    ) : (
-                      <div
-                        className={`relative cursor-pointer ${
-                          values[name]?.some(
-                            (img: MediaItem) => img?.id === item?.content?.id
-                          )
-                            ? "border-2 border-red-500 rounded-md"
-                            : ""
-                        }`}
-                        onClick={() =>
-                          handleImageSelect(
-                            item?.content?.id,
-                            item?.url || item?.content?.url || ""
-                          )
-                        }
-                      >
-                        <img
-                          src={item?.url || item?.content?.url || ""}
-                          alt={item?.name}
-                          className="w-[120px] h-[120px] rounded-md border"
-                        />
-                        <div>
-                          <DeleteMain file_id={item?.id} refetch={refetch} />
-                        </div>
-                      </div>
-                    )}
-                  </div>
-                ))}
-
-              {values.selectedFolder &&
-                filteredMedia?.map((item: MediaItem) => (
-                  <div key={item?.id} className="relative">
-                    {item?.type !== "folder" && (
-                      <div
-                        className={`cursor-pointer ${
-                          values[name]?.some(
-                            (img: MediaItem) => img.id === item?.id
-                          )
-                            ? "border-2 border-red-500"
-                            : ""
-                        }`}
-                        onClick={() =>
-                          handleImageSelect(
-                            item?.id,
-                            item?.url || item?.content?.url || ""
-                          )
-                        }
-                      >
-                        <img
-                          src={item?.url || item?.content?.url || ""}
-                          alt={item?.name}
-                          className="w-[120px] h-[120px] rounded-md border"
-                        />
-                        <div>
-                          <DeleteMain file_id={item?.id} refetch={refetch} />
-                        </div>
-                      </div>
-                    )}
-                  </div>
-                ))}
-            </div>
-
-            <div className="flex justify-end mt-4 mx-10">
-              <button
-                className="mr-4 px-4 py-2 bg-red-500 text-white rounded"
-                onClick={handleCancel}
+            <div className="p-4 w-full h-[80vh] m-2">
+              {values.selectedFolder && (
+                <button
+                  className="mb-4 px-4 py-2 bg-blue-500 text-white rounded mx-5"
+                  onClick={handleBackClick}
+                >
+                  Back
+                </button>
+              )}
+              <div
+                className={`flex flex-col justify-between ${
+                  values.selectedFolder ? "h-[68vh]" : "h-[75vh]"
+                } `}
               >
-                cancel
-              </button>
-              <button
-                className="px-4 py-2 bg-main text-white rounded"
-                onClick={handleSave}
-              >
-                save
-              </button>
+                <div className="grid grid-cols-9 gap-4">
+                  {!values.selectedFolder &&
+                    AllMedia?.data?.map((item: MediaItem) => (
+                      <div key={item?.id} className="relative">
+                        {item?.type === "folder" ? (
+                          <div>
+                            <div
+                              className="cursor-pointer"
+                              onClick={() => handleFolderClick(item?.id)}
+                            >
+                              <FaFolderOpen className="w-full h-28 text-main" />
+                              <p className="text-center">{item?.name}</p>
+                            </div>
+                            {/* <div className="cursor-pointer">
+                            <DeleteFolder
+                              file_id={item?.id}
+                              refetch={refetch}
+                            />
+                          </div> */}
+                          </div>
+                        ) : (
+                          <div
+                            // className={`cursor-pointer ${
+                            //   selectedIds.includes(item?.id) ? "border-2 border-red-500" : ""
+                            // }`}
+                            // onClick={() => handleSelect(item?.id)}
+                            className={`relative cursor-pointer ${
+                              // values[name]?.som((item)=>
+                              // item?.id == item?.content?.id
+                              // ) || 
+                              !isMulti ? 
+                              values[name]?.some(
+                                (img: MediaItem) =>
+                                  img?.id === item?.content?.id
+                              ) ? "border-2 border-red-500 rounded-md" :"" :
+                              selectedIds.includes(item?.content?.id)
+
+                                ? "border-2 border-red-500 rounded-md"
+                                : ""
+                            }`}
+                            onClick={() => {
+                              handleImageSelect(
+                                item?.content?.id,
+                                item?.url || item?.content?.url || ""
+                              );
+                              
+                            }}
+                          >
+                            <img
+                              src={item?.url || item?.content?.url || ""}
+                              alt={item?.name}
+                              className="w-[120px] h-[120px] rounded-md border"
+                            />
+                            {/* <div>
+                            <DeleteMain file_id={item?.id} refetch={refetch} />
+                          </div> */}
+                          </div>
+                        )}
+                      </div>
+                    ))}
+
+                  {values.selectedFolder &&
+                    filteredMedia?.map((item: MediaItem) => (
+                      <div key={item?.id} className="relative">
+                        {item?.type !== "folder" && (
+                          <div
+                            className={`cursor-pointer ${
+                              values[name]?.some(
+                                (img: MediaItem) => img.id === item?.id
+                              )
+                                ? "border-2 border-red-500"
+                                : ""
+                            }`}
+                            onClick={() =>
+                              handleImageSelect(
+                                item?.id,
+                                item?.url || item?.content?.url || ""
+                              )
+                            }
+                          >
+                            <img
+                              src={item?.url || item?.content?.url || ""}
+                              alt={item?.name}
+                              className="w-[120px] h-[120px] rounded-md border"
+                            />
+                            <div>
+                              <DeleteMain
+                                file_id={item?.id}
+                                refetch={refetch}
+                              />
+                            </div>
+                          </div>
+                        )}
+                      </div>
+                    ))}
+                </div>
+
+                <div className="flex justify-end mt-4 mx-10">
+                  <button
+                    className="mr-4 px-4 py-2 bg-red-500 text-white rounded"
+                    onClick={handleCancel}
+                  >
+                    cancel
+                  </button>
+                  <button
+                    className="px-4 py-2 bg-main text-white rounded"
+                    onClick={handleSave}
+                  >
+                    save
+                  </button>
+                </div>
+              </div>
             </div>
-          </div>
+          </LayoutMedia>
         </div>
       </ModalTemplate>
       <Label htmlFor="">{label}</Label>

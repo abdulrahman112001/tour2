@@ -23,16 +23,14 @@ function Add({ refetch, update }: AddCurrency_TP) {
     city_id: update?.city_id || "",
     latitude: update?.latitude || "",
     longitude: update?.longitude || "",
-    images:
-      update?.images?.map((item) => ({
-        url: item.url,
-        id: item?.id,
-      })) || [],
-    panar_image: [
-      {
-        url: update?.panar_image,
-      },
-    ],
+    // images:
+    //   update?.images?.map((item) => ({
+    //     url: item.url,
+    //     id: item?.id,
+    //   })) || [],
+      panar_image: update?.panar_image?.url
+      ? [{ url: update?.panar_image?.url, id: update?.panar_image?.id }]
+      : [],
   };
   const { mutate, isLoading } = useMutate({
     mutationKey: ["places"],
