@@ -15,11 +15,13 @@ import CardTour from "../tours/CardTour";
 import { useNavigate } from "react-router-dom";
 import AddSeo from "../../molecules/seo/AddSeo";
 import AddConfirm from "./confirmedFile/AddConfirm";
+import DetailsRequest from "./DetailsRequest";
 
 function Main() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isOpen, setOpen] = useState(false);
   const [model_id, setModel_id] = useState("");
+  const [modalDetailsRequest, setModalDetailsRequest] = useState(false);
 
   const [page, setPage] = useState(0);
   const [pagePagination, setPagePagination] = useState(pagePaginate);
@@ -51,7 +53,8 @@ function Main() {
         setMainData,
         setIsModalOpen,
         setOpen,
-        setModel_id
+        setModel_id,
+        setModalDetailsRequest
       ),
     [page, isRTL]
   );
@@ -93,6 +96,16 @@ function Main() {
             bookingId={model_id}
             setOpen={setOpen}
           />
+        </ModalTemplate>
+        <ModalTemplate
+          isOpen={modalDetailsRequest}
+          onClose={() => {
+            setModalDetailsRequest(false);
+          }}
+        >
+          <div>
+            <DetailsRequest data={MainData} />
+          </div>
         </ModalTemplate>
 
         <Table

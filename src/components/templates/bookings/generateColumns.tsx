@@ -9,6 +9,7 @@ import { Add } from "../../atoms/icons/Add";
 import { AddIcon } from "../../atoms/icons";
 import MenuChangeStatus from "../../molecules/MenuChangeStatus";
 import MenuAssignSells from "../../molecules/MenuAssignSells";
+import { IoNewspaperOutline } from "react-icons/io5";
 
 type RefetchFunction = () => void;
 type setMainDataFunction = React.Dispatch<React.SetStateAction<boolean>>;
@@ -20,7 +21,8 @@ export const generateColumns = (
   setMainData: setMainDataFunction,
   setIsModalOpen: any,
   setOpen: any,
-  setModel_id: any
+  setModel_id: any,
+  setModalDetailsRequest
 ): ColumnDef<any>[] => {
   return [
     {
@@ -42,6 +44,20 @@ export const generateColumns = (
       header: `${t("phone")}`,
       accessorKey: "phone",
       cell: (info) => info.renderValue(),
+    },
+    {
+      header: `${t("Details")}`,
+      accessorKey: "Details",
+      cell: (info) => (
+        <div className="cursor-pointer"
+        onClick={()=>{setModalDetailsRequest(true)
+
+          setMainData(info.row.original)
+        }}
+        >
+          <IoNewspaperOutline className="w-8 h-8 " />
+        </div>
+      ),
     },
     {
       header: `${t("Sells")}`,
