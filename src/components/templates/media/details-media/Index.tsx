@@ -1,14 +1,15 @@
-import React, { useState } from "react";
-import { useFetch } from "../../../../hooks";
-import CardMedia from "../CardMedia";
-import { useParams } from "react-router-dom";
-import LayoutMedia from "../LayoutMedia";
-import { Link } from "react-router-dom";
-import DeleteFolder from "../DeleteFolder";
+import { useState } from "react";
 import { FaFolderOpen } from "react-icons/fa";
+import { Link, useNavigate } from "react-router-dom";
+import { useFetch } from "../../../../hooks";
+import { Button } from "../../../atoms";
+import CardMedia from "../CardMedia";
+import DeleteFolder from "../DeleteFolder";
+import LayoutMedia from "../LayoutMedia";
 
 function DetailsMedia({ id }) {
   const [selectedIds, setSelectedIds] = useState<(number | string)[]>([]);
+  const navigate = useNavigate();
 
   const queryParams = {
     //  page: page,
@@ -16,7 +17,7 @@ function DetailsMedia({ id }) {
     // per_page: pageSize,
   };
   const searchParams = new URLSearchParams(queryParams as any);
-  const endpoint = `media-files/${id}?${searchParams.toString()}`;
+  const endpoint = `media-files/${id}${searchParams.toString()}`;
   const {
     data: AllMedia,
     refetch,
@@ -33,7 +34,9 @@ function DetailsMedia({ id }) {
       selectedIds={selectedIds}
       setSelectedIds={setSelectedIds}
     >
-      <div>
+      <Button  action={() => navigate(-1)} children={"Back"} />
+        
+      <div className="mt-5">
         <div className="grid grid-cols-12 gap-1">
           {AllMedia?.data?.content?.data?.map((item) => (
             <div className="relative">

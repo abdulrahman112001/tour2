@@ -82,7 +82,7 @@ export const AllRoutesProvider = () => {
           element={<DetailsFile title={t("Details Files")} />}
         />
         <Route path="/media" element={<Media title={t("Media")} />} />
-        <Route path="/media/:id" element={<DetailsFolder title={t("Media")} />} />
+        <Route path="/media/:file_id" element={<DetailsFolder title={t("Media")} />} />
 
 
         <Route path="/blogs" element={<Blogs title={t("blogs")} />} />

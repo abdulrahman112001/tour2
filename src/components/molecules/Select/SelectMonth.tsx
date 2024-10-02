@@ -25,10 +25,10 @@ export default function SelectMonth({
   const { values, setFieldValue } = useFormikContext<any>();
 
   const monthsOptions: OptionType[] = [
-    { label: "January", value: "Jan" },
+    { label: "January", value: "January" },
     { label: "February", value: "February" },
     { label: "March", value: "March" },
-    { label: "April", value: "Apr" },
+    { label: "April", value: "April" },
     { label: "May", value: "May" },
     { label: "June", value: "June" },
     { label: "July", value: "July" },

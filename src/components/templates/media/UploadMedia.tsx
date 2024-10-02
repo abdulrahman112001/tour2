@@ -30,11 +30,10 @@ const UploadMedia: React.FC<UploadMediaProps> = ({
   label,
 }) => {
   const { values, setFieldValue } = useContext(FormikContext) as FormikValues;
+  console.log("🚀 ~ values:", values);
   const [open, setOpen] = useState(false);
   const AllIds = values[name]?.map((item) => item?.id);
-  console.log("🚀 ~ AllIds:", AllIds);
   const [selectedIds, setSelectedIds] = useState(AllIds || []);
-  console.log("🚀 ~ selectedIds:", selectedIds)
 
   const queryParams = {};
   const searchParams = new URLSearchParams(queryParams as any);
@@ -90,6 +89,7 @@ const UploadMedia: React.FC<UploadMediaProps> = ({
   };
 
   // Handle removing an image from selected images
+  console.log("🚀 ~ filteredMedia:", filteredMedia);
   const handleRemoveImage = (imageId: string) => {
     const updatedImages = values[name]?.filter(
       (image: MediaItem) => image.id !== imageId
@@ -110,8 +110,8 @@ const UploadMedia: React.FC<UploadMediaProps> = ({
           <LayoutMedia
             refetch={refetch}
             selectedIds={selectedIds}
+            folder_id={values?.selectedFolder}
             setSelectedIds={setSelectedIds}
-            
           >
             <div className="p-4 w-full h-[80vh] m-2">
               {values.selectedFolder && (
@@ -156,14 +156,15 @@ const UploadMedia: React.FC<UploadMediaProps> = ({
                             className={`relative cursor-pointer ${
                               // values[name]?.som((item)=>
                               // item?.id == item?.content?.id
-                              // ) || 
-                              !isMulti ? 
-                              values[name]?.some(
-                                (img: MediaItem) =>
-                                  img?.id === item?.content?.id
-                              ) ? "border-2 border-red-500 rounded-md" :"" :
-                              selectedIds.includes(item?.content?.id)
-
+                              // ) ||
+                              !isMulti
+                                ? values[name]?.some(
+                                    (img: MediaItem) =>
+                                      img?.id === item?.content?.id
+                                  )
+                                  ? "border-2 border-red-500 rounded-md"
+                                  : ""
+                                : selectedIds.includes(item?.content?.id)
                                 ? "border-2 border-red-500 rounded-md"
                                 : ""
                             }`}
@@ -172,7 +173,6 @@ const UploadMedia: React.FC<UploadMediaProps> = ({
                                 item?.content?.id,
                                 item?.url || item?.content?.url || ""
                               );
-                              
                             }}
                           >
                             <img
@@ -190,36 +190,34 @@ const UploadMedia: React.FC<UploadMediaProps> = ({
 
                   {values.selectedFolder &&
                     filteredMedia?.map((item: MediaItem) => (
-                      <div key={item?.id} className="relative">
-                        {item?.type !== "folder" && (
-                          <div
-                            className={`cursor-pointer ${
-                              values[name]?.some(
-                                (img: MediaItem) => img.id === item?.id
-                              )
-                                ? "border-2 border-red-500"
-                                : ""
-                            }`}
-                            onClick={() =>
-                              handleImageSelect(
-                                item?.id,
-                                item?.url || item?.content?.url || ""
-                              )
-                            }
-                          >
-                            <img
-                              src={item?.url || item?.content?.url || ""}
-                              alt={item?.name}
-                              className="w-[120px] h-[120px] rounded-md border"
-                            />
-                            <div>
-                              <DeleteMain
-                                file_id={item?.id}
-                                refetch={refetch}
+                      <div key={item?.id} className="relative  grid grid-cols-8 col-span-12 gap-4">
+                        {item?.type == "folder" &&
+                          item?.content?.data?.map((supItem) => (
+                            <div
+                              className={`cursor-pointer ${
+                                values[name]?.some(
+                                  (img: MediaItem) => img.id === supItem?.id
+                                )
+                                  ? "border-2 border-red-500"
+                                  : ""
+                              }`}
+                              onClick={() =>
+                                handleImageSelect(supItem?.id, supItem?.url)
+                              }
+                            >
+                              <img
+                                src={supItem?.url}
+                                alt={supItem?.name}
+                                className="w-[120px] h-[120px] rounded-md border"
                               />
+                              {/* <div>
+                                <DeleteMain
+                                  file_id={supItem?.id}
+                                  refetch={refetch}
+                                />
+                              </div> */}
                             </div>
-                          </div>
-                        )}
+                          ))}
                       </div>
                     ))}
                 </div>

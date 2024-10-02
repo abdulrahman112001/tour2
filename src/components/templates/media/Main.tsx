@@ -13,8 +13,7 @@ type AllMedia_TP = {
 function Main() {
   const navigate = useNavigate();
   const [page, setPage] = useState(0);
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [isModalFolderOpen, setIsModalFolderOpen] = useState(false);
+
   const [selectedIds, setSelectedIds] = useState<(number | string)[]>([]);
 
   const [MainData, setMainData] = useState({});

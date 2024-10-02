@@ -3,10 +3,12 @@ import DetailsMedia from "../../../components/templates/media/details-media/Inde
 import { useParams } from "react-router-dom";
 
 function DetailsFolder() {
-  const { id } = useParams();
+  const {file_id} = useParams();
+  console.log("🚀 ~ DetailsFolder ~ params:", file_id)
+  // console.log("🚀 ~ DetailsFolder ~ file_id:", fileId)
   return (
     <div>
-      <DetailsMedia id={id} />
+      <DetailsMedia id={file_id} />
     </div>
   );
 }
