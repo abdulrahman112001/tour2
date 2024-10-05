@@ -16,11 +16,13 @@ function LayoutMedia({
   selectedIds,
   setSelectedIds,
   showDelete,
+  folder_id
 }) {
+  console.log("🚀 ~ folder_id:", folder_id)
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isModalFolderOpen, setIsModalFolderOpen] = useState(false);
 
-  const { id } = useParams();
+  const { file_id } = useParams();
   const { mutate } = useMutate({
     mutationKey: [`media-files/bulk-delete`],
     endpoint: `media-files/bulk-delete`,
@@ -63,7 +65,7 @@ function LayoutMedia({
           refetch={refetch}
           update={MainData}
           setIsModalOpen={setIsModalOpen}
-          FolderId={id}
+          FolderId={file_id || folder_id}
         />
       </ModalTemplate>
       <ModalTemplate

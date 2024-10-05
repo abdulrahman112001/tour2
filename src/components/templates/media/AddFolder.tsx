@@ -17,7 +17,7 @@ type AddCurrency_TP = {
 
 function AddFolder({ refetch, update, setIsModalOpen }: AddCurrency_TP) {
   const {id} = useParams()
-  console.log("🚀 ~ AddFolder ~ id:", id)
+
 
   const initialValues = {
     name: "",
