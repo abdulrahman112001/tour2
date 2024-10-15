@@ -18,7 +18,6 @@ function LayoutMedia({
   showDelete,
   folder_id
 }) {
-  console.log("🚀 ~ folder_id:", folder_id)
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isModalFolderOpen, setIsModalFolderOpen] = useState(false);
 
@@ -101,7 +100,7 @@ function LayoutMedia({
                   () => {
                     mutate({
                       ids: selectedIds,
-                      folder_id: id ? id : null,
+                      folder_id: file_id ? file_id : null,
                     });
                   }
                 );

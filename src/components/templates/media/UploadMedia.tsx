@@ -123,7 +123,7 @@ const UploadMedia: React.FC<UploadMediaProps> = ({
                 </button>
               )}
               <div
-                className={`flex flex-col justify-between ${
+                className={`flex flex-col justify-between relative ${
                   values.selectedFolder ? "h-[68vh]" : "h-[75vh]"
                 } `}
               >
@@ -222,7 +222,7 @@ const UploadMedia: React.FC<UploadMediaProps> = ({
                     ))}
                 </div>
 
-                <div className="flex justify-end mt-4 mx-10">
+                <div className="flex justify-end mt-4 mx-10 fixed bottom-5 right-0 z-10">
                   <button
                     className="mr-4 px-4 py-2 bg-red-500 text-white rounded"
                     onClick={handleCancel}

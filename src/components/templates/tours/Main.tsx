@@ -59,16 +59,22 @@ function Main() {
         </div>
       </div>
       <div>
-        {AllTours?.data?.map((item) => (
-          <CardTour
-            item={item}
-            refetch={refetch}
-            setIsModalSeoOpen={setIsModalSeoOpen}
-            isModalSeoOpen={isModalSeoOpen}
-            setMainData={setMainData}
-            setModel_id={setModel_id}
-          />
-        ))}
+        {AllTours?.data.length ? (
+          AllTours?.data?.map((item) => (
+            <CardTour
+              item={item}
+              refetch={refetch}
+              setIsModalSeoOpen={setIsModalSeoOpen}
+              isModalSeoOpen={isModalSeoOpen}
+              setMainData={setMainData}
+              setModel_id={setModel_id}
+            />
+          ))
+        ) : (
+          <div>
+            <img src="/no_tours.webp" className="w-1/2 h-[75vh]  m-auto" />
+          </div>
+        )}
         <ModalTemplate
           isOpen={isModalSeoOpen}
           onClose={() => {
@@ -83,15 +89,17 @@ function Main() {
             setIsModalSeoOpen={setIsModalSeoOpen}
           />
         </ModalTemplate>
-        <div className="flex justify-end mt-3">
-          <Paginate
-            pagesCount={AllTours?.pagination?.last_page}
-            previousLabel={<PreviousPage />}
-            nextLabel={<NextPaginationIc />}
-            onPageChange={handlePageChange}
-            initialPage={page}
-          />
-        </div>
+        {AllTours?.data.length && (
+          <div className="flex justify-end mt-3">
+            <Paginate
+              pagesCount={AllTours?.pagination?.last_page}
+              previousLabel={<PreviousPage />}
+              nextLabel={<NextPaginationIc />}
+              onPageChange={handlePageChange}
+              initialPage={page}
+            />
+          </div>
+        )}
       </div>
     </div>
   );

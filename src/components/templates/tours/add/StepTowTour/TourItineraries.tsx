@@ -87,7 +87,7 @@ function TourItineraries() {
                 ) : (
                   <>
                     <p className="font-bold">Place - {index + 1}</p>
-                    <div className="grid grid-cols-3 relative gap-2 border border-dashed p-2 rounded-xl my-2  ">
+                    <div className="grid grid-cols-2 relative gap-2 border border-dashed p-2 rounded-xl my-2  ">
                       <SelectPlaces
                         name={`tour_itineraries[${index}][place_id]`}
                         label="Places"
@@ -116,12 +116,11 @@ function TourItineraries() {
                           )
                         }
                       />
-                      <BaseInputRepeater
+                      <TextAreaField
                         id=""
                         label={`${t("description")}`}
                         name={`tour_itineraries[${index}][description]`}
                         placeholder={`${t("description")}`}
-                        type="text"
                         value={item?.description}
                         onChange={(e) =>
                           setFieldValue(
@@ -134,7 +133,7 @@ function TourItineraries() {
                       {values?.tour_itineraries?.length > 1 && (
                         <button
                           type="button"
-                          className=" absolute ltr:right-[-25px]  top-[10px]"
+                          className=" absolute ltr:right-[0px]  top-[10px]"
                           onClick={() => {
                             remove(index);
                           }}

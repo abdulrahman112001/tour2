@@ -73,34 +73,29 @@ function CardTour({
         </div>
       </div>
       <div className="flex flex-col gap-3 mb-3">
-        <button
-          className="bg-[#186b6d] p-3 rounded-md px-10 text-white w-full"
-          onClick={() => navigate(`/tours/edit/${item?.id}`)}
-        >
-          Improve
-        </button>
-        <DeleteMain Main_id={item?.id} refetch={refetch} />
-        <div className="cursor-pointer">
-          {item?.seo ? (
-            // <UpdateIcon
-            //   refetch={refetch}
-            //   setModel={setIsModalSeoOpen}
-            //   info={item}
-            //   setData={setMainData}
-            // />
-            <div
-            className="bg-mainGray p-3 rounded-md px-10 text-white w-full"
-            onClick={() => {
-              setModel_id(item?.id);
-              setIsModalSeoOpen(true);
-              setMainData(item)
-            }}
+        <DropDown>
+          <button
+            className="bg-[#186b6d] p-2 w-full rounded-md  text-white "
+            onClick={() => navigate(`/tours/edit/${item?.id}`)}
           >
-            Edit Seo
-          </div>
+            Improve
+          </button>
+
+          <DeleteMain Main_id={item?.id} refetch={refetch} />
+          {item?.seo ? (
+            <div
+              className="bg-mainGray p-2 w-full rounded-md  text-white "
+              onClick={() => {
+                setModel_id(item?.id);
+                setIsModalSeoOpen(true);
+                setMainData(item);
+              }}
+            >
+              Edit Seo
+            </div>
           ) : (
             <div
-              className="bg-mainGray p-3 rounded-md px-10 text-white w-full"
+              className="bg-mainGray p-2 w-full rounded-md  text-white "
               onClick={() => {
                 setModel_id(item?.id);
                 setIsModalSeoOpen(true);
@@ -109,7 +104,7 @@ function CardTour({
               Add Seo
             </div>
           )}
-        </div>
+        </DropDown>
       </div>
     </div>
   );
